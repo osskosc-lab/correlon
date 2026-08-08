@@ -1,0 +1,2 @@
+model,L,U,K_over_pi,krylov_order_used,analytic_bound_energy,ritz_bound_energy,energy_error,bound_fraction,ritz_residual,eta_scaling_alpha,delta_minus_cusp_AICc,delta_model_preferred,physical_pole_detected,verdict
+attractive Hubbard two-particle bound pair,64,-4.0,0.5,64,-4.898979485566356,-4.898979485566353,2.664535259100376e-15,0.8164965809277264,5.940103903772025e-16,0.9940806622338321,-4.285751955924155,True,True,PIPELINE RECOVERS KNOWN INTERACTING COMPOSITE BOUND-STATE POLE

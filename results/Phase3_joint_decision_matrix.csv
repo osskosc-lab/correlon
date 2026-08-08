@@ -1,0 +1,7 @@
+family,parameter,alpha_gate,residue_gate,gap_gate,model_consistency,strict_pole_gate,largest_L,largest_L_alpha,largest_L_top_fraction,largest_L_gap,beta_top_fraction,gamma_gap
+J1-J2 spin chain,J2=0.0,True,False,False,True,False,16,0.9018071062944872,0.3903760515178046,0.1474493222802957,0.7297297952574376,3.79117112858196
+J1-J2 spin chain,J2=0.3,True,False,False,True,False,16,0.8654793657461513,0.3142648537517373,0.0726280836959294,1.0624866862702735,3.9968306949714223
+J1-J2 spin chain,J2=0.5,False,False,False,False,False,16,0.7573794054578604,0.2578047398993219,0.0325843389425477,1.6805950434432892,0.4105808253912404
+J1-J2 spin chain,J2=0.7,False,True,False,False,False,16,0.7389921780104487,0.2945856190494868,0.0152820768529551,-0.1965268736425238,2.686753186200978
+1D repulsive Hubbard higher-order,U/t=8,False,False,False,False,False,16,0.518,,,,
+Attractive Hubbard bound pair,"U/t=-4,K=pi/2",True,True,True,True,True,64,0.994,0.816497,,0.0,0.0
