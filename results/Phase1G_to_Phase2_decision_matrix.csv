@@ -1,0 +1,6 @@
+phase,test,result,falsification,status
+1G,Broadening exponent Hmax ~ eta^-alpha,alpha ~0.52 at m=64-72; delta control ~0.91,delta-pole scaling rejected,REJECT pole
+1H,AICc: delta+background vs fractional cusp,fractional cusp wins; mu=0.526; deltaAICc(delta-cusp)=26.2,delta model decisively disfavored,SUPPORT cusp
+1I,Momentum-wide q scan,all 6 q: cusp best; mu=0.480-0.530; all deltaAICc>10,not a single quasiparticle dispersion,SUPPORT continuum ridge
+1J,"Interaction sweep L=10, U=0,2,4,8",mu rises ~0.36->0.46 and stays far below 1,"interaction sharpens continuum, no delta pole",SUPPORT interaction-enhanced cusp
+2 bridge,Physical positive control: attractive-Hubbard bound pair,Eb exact; Z=0.8165; Ritz residual 5.9e-16; alpha=0.994,pipeline can detect a real composite pole,PASS bridge
