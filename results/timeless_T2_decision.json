@@ -1,0 +1,55 @@
+{
+  "claim_firewall": "This is a known modular-flow theorem reproduction and not Correlon-specific evidence.",
+  "configuration": {
+    "betas": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "dimensions": [
+      2,
+      4,
+      8
+    ],
+    "s_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "seeds": [
+      0,
+      99
+    ]
+  },
+  "git": {
+    "branch": "agent/timeless-correlon-phase-t0-t3",
+    "commit": "c470b02770571e9cb0e98836545b4edb0a011ba2"
+  },
+  "negative_control_summary": {
+    "generic_non_gibbs_unrelated_H": {
+      "flow_error_median": 1.3634409437594268,
+      "generator_error_median": 0.9994003201314601
+    },
+    "gibbs_eigenvectors_rotated": {
+      "flow_error_median": 1.4461513486998152,
+      "generator_error_median": 0.9999465393208825
+    },
+    "incorrect_diagonal_observable_algebra": {
+      "flow_error_median": 2.4865362621426865e-15,
+      "generator_error_median": null
+    }
+  },
+  "phase": "T2",
+  "positive_control_gate": {
+    "flow_threshold": 1e-06,
+    "generator_threshold": 1e-08,
+    "max_flow_error": 2.395515212897115e-11,
+    "max_generator_error": 2.852405913075272e-12,
+    "pass": true
+  },
+  "verdict": "MODULAR_FLOW_CONTROL_PASS"
+}

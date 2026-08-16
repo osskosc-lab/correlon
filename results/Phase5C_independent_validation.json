@@ -1,0 +1,27 @@
+{
+  "validator": "independent aggregate validator v1.0",
+  "checks": {
+    "baseline_selection_match": true,
+    "correlon_weight_match": true,
+    "placebo_selection_match": true,
+    "placebo_weight_match": true,
+    "point_gain_match": true,
+    "point_placebo_gain_match": true,
+    "verdict_match": true,
+    "seed_count_200": true
+  },
+  "all_checks_pass": true,
+  "independent": {
+    "G_C": 0.01430268054709316,
+    "G_C_CI95": [0.01164115389415582, 0.016957270755510664],
+    "G_P": 0.018783582195227244,
+    "specificity": -0.0044809016481340835,
+    "specificity_CI95": [-0.005722823659281365, -0.003231141844017228],
+    "common_delta": 0.0073332670446994664,
+    "common_delta_CI95": [0.006296688039386233, 0.008395642942222569],
+    "sham_delta": 0.006066756521674984,
+    "sham_delta_CI95": [0.004958249030153781, 0.007129021297560412],
+    "gates": {"gate1": true, "gate2": false, "gate3": true, "gate4": true, "gate5": false},
+    "verdict": "C_PLACEBO_EQUIVALENT_NO_GO"
+  }
+}
