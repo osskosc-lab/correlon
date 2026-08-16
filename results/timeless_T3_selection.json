@@ -1,0 +1,11 @@
+{
+  "best_baseline_method": "raw_svd",
+  "best_baseline_rank": 4,
+  "cca_identity_max_diff": 0.0,
+  "config_sha256": "2fc6dbbdfc2b30b24d824bf6b5985d0c433b305e25f012c30a1cf2ac25c8abdc",
+  "correlon_rank": 4,
+  "identity_tolerance": 1e-10,
+  "selection_rule": "minimum mean primary generator error on validation; full oracle and CCA identity row excluded from baseline selection",
+  "validation_best_baseline_error": 0.08762720307299246,
+  "validation_correlon_error": 0.08834954215778953
+}

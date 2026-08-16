@@ -1,0 +1,46 @@
+{
+  "configuration": {
+    "burn_in": 1000,
+    "dt": 0.01,
+    "gamma": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "omega": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "seeds": [
+      0,
+      99
+    ],
+    "trajectory_length": 5000
+  },
+  "gate": {
+    "current_difference_CI95": [
+      0.7262028929186308,
+      0.7528183753480309
+    ],
+    "dynamics_distinct": true,
+    "exact_covariance_equivalent": true,
+    "generator_difference_CI95": [
+      2.0672687148592117,
+      2.3077312851407883
+    ],
+    "pooled_empirical_covariance_diagnostic_pass": false,
+    "pooled_empirical_covariance_max_CI95_upper": 0.19468989036114184,
+    "threshold_covariance": 0.05,
+    "threshold_dynamics": 0.2
+  },
+  "git": {
+    "branch": "agent/timeless-correlon-phase-t0-t3",
+    "commit": "c470b02770571e9cb0e98836545b4edb0a011ba2"
+  },
+  "interpretation": "The exact same-C / different-dynamics counterexample succeeds; equal-time covariance alone cannot uniquely determine temporal flow.",
+  "phase": "T0",
+  "verdict": "C_ONLY_TIME_NO_GO"
+}

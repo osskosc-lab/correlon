@@ -1,0 +1,77 @@
+{
+  "git": {
+    "branch": "agent/timeless-correlon-phase-t0-t3",
+    "commit": "c470b02770571e9cb0e98836545b4edb0a011ba2"
+  },
+  "t0": {
+    "current_difference_CI95": [
+      0.7262028929186308,
+      0.7528183753480309
+    ],
+    "dynamics_distinct": true,
+    "empirical_covariance_is_diagnostic_only": true,
+    "empirical_per_seed_covariance_CI95_max_upper": 0.6746056578906221,
+    "exact_covariance_equivalent": true,
+    "generator_difference_CI95": [
+      2.0672687148592117,
+      2.3077312851407883
+    ],
+    "thresholds": {
+      "covariance": 0.05,
+      "dynamics": 0.2
+    },
+    "verdict": "C_ONLY_TIME_NO_GO"
+  },
+  "t1": {
+    "median_generator_error_N_ge_2000_cond_le_10": 0.0311350636218756,
+    "median_generator_error_by_sample_size_cond_le_10": {
+      "10000": 0.0224083756793006,
+      "2000": 0.0508172905315587,
+      "500": 0.1021405133447192
+    },
+    "median_vector_field_cosine_N_ge_2000_cond_le_10": 0.999495953730454,
+    "monotonicity": true,
+    "positive_control_pass": true,
+    "thresholds": {
+      "generator_error": 0.1,
+      "unknown_J_lower": 0.2,
+      "vector_field_cosine": 0.95
+    },
+    "unknown_symplectic_generator_error_CI95": [
+      0.8361137600615582,
+      0.8738791356216522
+    ],
+    "unknown_symplectic_structure_pass": true,
+    "verdict": "RESTRICTED_GIBBS_GAUSSIAN_RECOVERY"
+  },
+  "t2": {
+    "claim_limit": "known modular-flow mathematics only; not Correlon-specific evidence",
+    "flow_threshold": 1e-06,
+    "generator_threshold": 1e-08,
+    "max_flow_error": 2.3955152128971148e-11,
+    "max_generator_error": 2.852405913075272e-12,
+    "pass": true,
+    "verdict": "MODULAR_FLOW_CONTROL_PASS"
+  },
+  "t3": {
+    "baseline_error_mean": 0.08757214872949172,
+    "cca_identity_gate": true,
+    "cca_identity_max_diff": 0.0,
+    "cca_identity_tolerance": 1e-10,
+    "configuration_hash": "2fc6dbbdfc2b30b24d824bf6b5985d0c433b305e25f012c30a1cf2ac25c8abdc",
+    "configuration_hash_matches_selection": true,
+    "correlon_error_mean": 0.0882974802561347,
+    "n_paired_confirmation_cases": 7200,
+    "relative_gain_CI95": [
+      -0.007101573022447341,
+      -0.0066111304080025335
+    ],
+    "relative_gain_mean": -0.006859036810929524,
+    "selected_baseline": "raw_svd",
+    "selected_baseline_rank": 4,
+    "selected_correlon_rank": 4,
+    "specificity_gate_pass": false,
+    "specificity_threshold": 0.1,
+    "verdict": "CORRELON_EQUALS_CCA_FOR_THIS_OPERATOR"
+  }
+}
