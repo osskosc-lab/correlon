@@ -1,0 +1,1551 @@
+{
+  "adversarial_audit": {
+    "best_parameters": {
+      "drift": 0.2629403015043294,
+      "frequency": 0.2804527699694389,
+      "latent_rank": 1,
+      "noise": 0.1422200660077279,
+      "rho": 0.6954582476999487,
+      "sample_length": 600,
+      "strength": 0.553927167239739,
+      "x_delay": 2,
+      "y_delay": 2
+    },
+    "best_trial": 266,
+    "crossing_count": 82,
+    "crossing_rate": 0.2733333333333333,
+    "direct_edge_absent_by_construction": true,
+    "formal_repeated_crossing": true,
+    "maximum_score": 0.7430832868024942,
+    "reused_existing_frozen_search_output": true,
+    "threshold": 0.05106167951270389,
+    "trials": 300
+  },
+  "baseline_comparison": {
+    "baseline_mean_deltas": {
+      "VAR_ARX_predictive": -0.0817840098964059,
+      "autocorrelation_persistence": -0.2001523348956396,
+      "largest_covariance_eigenvalue": -0.13430163913231577,
+      "linear_CKA": -0.4542593223116441,
+      "mutual_information": -0.023673147301594418,
+      "pca_rank1_explained_variance": -0.015036400298369789,
+      "pearson": -0.10008825419000553,
+      "spectral_coherence": -0.339742256263731
+    },
+    "paired_advantage": {
+      "failure_count_Delta_le_zero": 200,
+      "mean": -0.9968750090409699,
+      "mean_CI95": [
+        -1.0039082259685705,
+        -0.9878961229718997
+      ],
+      "median": -0.9928413993396721,
+      "n": 200,
+      "q05": -1.0577755321005862,
+      "standard_deviation": 0.0570191586773036
+    },
+    "strongest_baseline_by_mean_delta": "pca_rank1_explained_variance",
+    "strongest_baseline_mean_delta": -0.015036400298369789
+  },
+  "decision": {
+    "all_failure_labels": [
+      "FALSIFIED_REPRESENTATION_DEPENDENCE",
+      "FALSIFIED_COMMON_DRIVER",
+      "FALSIFIED_MATCHED_NULL",
+      "FALSIFIED_BY_BASELINE",
+      "FALSIFIED_ADVERSARIAL"
+    ],
+    "failure_flags": {
+      "adversarial": true,
+      "baseline_equals_or_exceeds": true,
+      "common_driver": true,
+      "matched_null": true,
+      "representation_dependence": true
+    },
+    "primary_label": "FALSIFIED_REPRESENTATION_DEPENDENCE",
+    "status": "FINAL"
+  },
+  "false_positive_audit": [
+    {
+      "crossing_count": 15,
+      "false_positive_rate": 0.075,
+      "maximum_score": 0.1492393314675449,
+      "mean_score": 0.011283038193870972,
+      "median_score": 0.0,
+      "metric": "correlon_v1",
+      "n": 200,
+      "negative_class": "independent_noise",
+      "threshold": 0.05106167951270389
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.0896720025688099,
+      "mean_score": 0.06819980863965842,
+      "median_score": 0.0676711784406134,
+      "metric": "pearson",
+      "n": 200,
+      "negative_class": "independent_noise",
+      "threshold": 0.0909181011472309
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.0220324593000422,
+      "mean_score": 0.014238947803496806,
+      "median_score": 0.0137990695029491,
+      "metric": "mutual_information",
+      "n": 200,
+      "negative_class": "independent_noise",
+      "threshold": 0.0245425420479295
+    },
+    {
+      "crossing_count": 33,
+      "false_positive_rate": 0.165,
+      "maximum_score": 1.660292186531899,
+      "mean_score": 1.4216846976236857,
+      "median_score": 1.4159863674482807,
+      "metric": "largest_covariance_eigenvalue",
+      "n": 200,
+      "negative_class": "independent_noise",
+      "threshold": 1.4929874149291256
+    },
+    {
+      "crossing_count": 33,
+      "false_positive_rate": 0.165,
+      "maximum_score": 0.1383576822109915,
+      "mean_score": 0.11847372480197375,
+      "median_score": 0.11799886395402334,
+      "metric": "pca_rank1_explained_variance",
+      "n": 200,
+      "negative_class": "independent_noise",
+      "threshold": 0.12441561791076046
+    },
+    {
+      "crossing_count": 4,
+      "false_positive_rate": 0.02,
+      "maximum_score": 0.1846593668984509,
+      "mean_score": 0.13025800987992123,
+      "median_score": 0.1288046347332013,
+      "metric": "spectral_coherence",
+      "n": 200,
+      "negative_class": "independent_noise",
+      "threshold": 0.17054676045893405
+    },
+    {
+      "crossing_count": 25,
+      "false_positive_rate": 0.125,
+      "maximum_score": 0.7165153046082077,
+      "mean_score": 0.6952138459666607,
+      "median_score": 0.6956242784666347,
+      "metric": "autocorrelation_persistence",
+      "n": 200,
+      "negative_class": "independent_noise",
+      "threshold": 0.7057475213919987
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.0469159726560421,
+      "mean_score": 0.027614609213183296,
+      "median_score": 0.02686257173897445,
+      "metric": "linear_CKA",
+      "n": 200,
+      "negative_class": "independent_noise",
+      "threshold": 0.04876170431019372
+    },
+    {
+      "crossing_count": 32,
+      "false_positive_rate": 0.16,
+      "maximum_score": 0.0448635594089749,
+      "mean_score": 0.03133747001269654,
+      "median_score": 0.0313455076745062,
+      "metric": "VAR_ARX_predictive",
+      "n": 200,
+      "negative_class": "independent_noise",
+      "threshold": 0.0342748237716478
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.6148274591566167,
+      "mean_score": 0.4946083850139391,
+      "median_score": 0.4997208567836947,
+      "metric": "correlon_v1",
+      "n": 200,
+      "negative_class": "common_driver",
+      "threshold": 0.05106167951270389
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.4339422458337375,
+      "mean_score": 0.3365683252938083,
+      "median_score": 0.3379192585695517,
+      "metric": "pearson",
+      "n": 200,
+      "negative_class": "common_driver",
+      "threshold": 0.0909181011472309
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.1341080969796603,
+      "mean_score": 0.10174168082327024,
+      "median_score": 0.10258924095130359,
+      "metric": "mutual_information",
+      "n": 200,
+      "negative_class": "common_driver",
+      "threshold": 0.0245425420479295
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 5.673376668206831,
+      "mean_score": 4.521426597944955,
+      "median_score": 4.545633492018997,
+      "metric": "largest_covariance_eigenvalue",
+      "n": 200,
+      "negative_class": "common_driver",
+      "threshold": 1.4929874149291256
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.4727813890172359,
+      "mean_score": 0.3767855498287462,
+      "median_score": 0.378802791001583,
+      "metric": "pca_rank1_explained_variance",
+      "n": 200,
+      "negative_class": "common_driver",
+      "threshold": 0.12441561791076046
+    },
+    {
+      "crossing_count": 199,
+      "false_positive_rate": 0.995,
+      "maximum_score": 0.2784618994878698,
+      "mean_score": 0.2241524433150542,
+      "median_score": 0.22267881460883188,
+      "metric": "spectral_coherence",
+      "n": 200,
+      "negative_class": "common_driver",
+      "threshold": 0.17054676045893405
+    },
+    {
+      "crossing_count": 39,
+      "false_positive_rate": 0.195,
+      "maximum_score": 0.7414603497330828,
+      "mean_score": 0.6889521926941949,
+      "median_score": 0.6909659353183464,
+      "metric": "autocorrelation_persistence",
+      "n": 200,
+      "negative_class": "common_driver",
+      "threshold": 0.7057475213919987
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.5992889590927102,
+      "mean_score": 0.4479540678332024,
+      "median_score": 0.45179714069534854,
+      "metric": "linear_CKA",
+      "n": 200,
+      "negative_class": "common_driver",
+      "threshold": 0.04876170431019372
+    },
+    {
+      "crossing_count": 196,
+      "false_positive_rate": 0.98,
+      "maximum_score": 0.050202319816656,
+      "mean_score": 0.040869089804222825,
+      "median_score": 0.0408573241618791,
+      "metric": "VAR_ARX_predictive",
+      "n": 200,
+      "negative_class": "common_driver",
+      "threshold": 0.0342748237716478
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.6778811803427489,
+      "mean_score": 0.617932470726796,
+      "median_score": 0.6214783966926638,
+      "metric": "correlon_v1",
+      "n": 200,
+      "negative_class": "matched_low_rank",
+      "threshold": 0.05106167951270389
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.3823090645984952,
+      "mean_score": 0.30438448653331973,
+      "median_score": 0.30604362032724297,
+      "metric": "pearson",
+      "n": 200,
+      "negative_class": "matched_low_rank",
+      "threshold": 0.0909181011472309
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.1020850431479123,
+      "mean_score": 0.08596841058072167,
+      "median_score": 0.0856324018700409,
+      "metric": "mutual_information",
+      "n": 200,
+      "negative_class": "matched_low_rank",
+      "threshold": 0.0245425420479295
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 5.10881218516889,
+      "mean_score": 4.187854006971456,
+      "median_score": 4.184918594759344,
+      "metric": "largest_covariance_eigenvalue",
+      "n": 200,
+      "negative_class": "matched_low_rank",
+      "threshold": 1.4929874149291256
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.4257343487640743,
+      "mean_score": 0.34898783391428806,
+      "median_score": 0.34874321622994525,
+      "metric": "pca_rank1_explained_variance",
+      "n": 200,
+      "negative_class": "matched_low_rank",
+      "threshold": 0.12441561791076046
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.6916329426701128,
+      "mean_score": 0.5993886377153187,
+      "median_score": 0.5997996544259901,
+      "metric": "spectral_coherence",
+      "n": 200,
+      "negative_class": "matched_low_rank",
+      "threshold": 0.17054676045893405
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.0499046998810181,
+      "mean_score": 0.032235133447558253,
+      "median_score": 0.03205915369088705,
+      "metric": "autocorrelation_persistence",
+      "n": 200,
+      "negative_class": "matched_low_rank",
+      "threshold": 0.7057475213919987
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.5161320177159526,
+      "mean_score": 0.3912731840717146,
+      "median_score": 0.3943335172644967,
+      "metric": "linear_CKA",
+      "n": 200,
+      "negative_class": "matched_low_rank",
+      "threshold": 0.04876170431019372
+    },
+    {
+      "crossing_count": 27,
+      "false_positive_rate": 0.135,
+      "maximum_score": 0.0417666071911476,
+      "mean_score": 0.030834949771192558,
+      "median_score": 0.030783074939263702,
+      "metric": "VAR_ARX_predictive",
+      "n": 200,
+      "negative_class": "matched_low_rank",
+      "threshold": 0.0342748237716478
+    },
+    {
+      "crossing_count": 16,
+      "false_positive_rate": 0.08,
+      "maximum_score": 0.1603665445133813,
+      "mean_score": 0.010374007274927093,
+      "median_score": 0.0,
+      "metric": "correlon_v1",
+      "n": 200,
+      "negative_class": "matched_spectrum",
+      "threshold": 0.05106167951270389
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.0793907777153623,
+      "mean_score": 0.06066401368523754,
+      "median_score": 0.060405416405016704,
+      "metric": "pearson",
+      "n": 200,
+      "negative_class": "matched_spectrum",
+      "threshold": 0.0909181011472309
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.0187102103592958,
+      "mean_score": 0.011202330234050276,
+      "median_score": 0.01085615848278885,
+      "metric": "mutual_information",
+      "n": 200,
+      "negative_class": "matched_spectrum",
+      "threshold": 0.0245425420479295
+    },
+    {
+      "crossing_count": 8,
+      "false_positive_rate": 0.04,
+      "maximum_score": 1.5637387560177145,
+      "mean_score": 1.374170300582235,
+      "median_score": 1.370203335899808,
+      "metric": "largest_covariance_eigenvalue",
+      "n": 200,
+      "negative_class": "matched_spectrum",
+      "threshold": 1.4929874149291256
+    },
+    {
+      "crossing_count": 8,
+      "false_positive_rate": 0.04,
+      "maximum_score": 0.1303115630014761,
+      "mean_score": 0.11451419171518619,
+      "median_score": 0.11418361132498395,
+      "metric": "pca_rank1_explained_variance",
+      "n": 200,
+      "negative_class": "matched_spectrum",
+      "threshold": 0.12441561791076046
+    },
+    {
+      "crossing_count": 3,
+      "false_positive_rate": 0.015,
+      "maximum_score": 0.1769785804962508,
+      "mean_score": 0.13083942870195478,
+      "median_score": 0.12907567466778075,
+      "metric": "spectral_coherence",
+      "n": 200,
+      "negative_class": "matched_spectrum",
+      "threshold": 0.17054676045893405
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.6382304071581716,
+      "mean_score": 0.6119147557880596,
+      "median_score": 0.6120007709393809,
+      "metric": "autocorrelation_persistence",
+      "n": 200,
+      "negative_class": "matched_spectrum",
+      "threshold": 0.7057475213919987
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.0371879742675835,
+      "mean_score": 0.021954195041919467,
+      "median_score": 0.0214741716680033,
+      "metric": "linear_CKA",
+      "n": 200,
+      "negative_class": "matched_spectrum",
+      "threshold": 0.04876170431019372
+    },
+    {
+      "crossing_count": 34,
+      "false_positive_rate": 0.17,
+      "maximum_score": 0.04194165044805,
+      "mean_score": 0.031841994488789445,
+      "median_score": 0.031910504658845845,
+      "metric": "VAR_ARX_predictive",
+      "n": 200,
+      "negative_class": "matched_spectrum",
+      "threshold": 0.0342748237716478
+    },
+    {
+      "crossing_count": 27,
+      "false_positive_rate": 0.135,
+      "maximum_score": 0.1223477425978064,
+      "mean_score": 0.014034412575124056,
+      "median_score": 0.0,
+      "metric": "correlon_v1",
+      "n": 200,
+      "negative_class": "matched_autocorrelation",
+      "threshold": 0.05106167951270389
+    },
+    {
+      "crossing_count": 1,
+      "false_positive_rate": 0.005,
+      "maximum_score": 0.0932509865268694,
+      "mean_score": 0.06039965607557078,
+      "median_score": 0.059819448224031596,
+      "metric": "pearson",
+      "n": 200,
+      "negative_class": "matched_autocorrelation",
+      "threshold": 0.0909181011472309
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.0239900642354543,
+      "mean_score": 0.010913471302878725,
+      "median_score": 0.01067411750513005,
+      "metric": "mutual_information",
+      "n": 200,
+      "negative_class": "matched_autocorrelation",
+      "threshold": 0.0245425420479295
+    },
+    {
+      "crossing_count": 155,
+      "false_positive_rate": 0.775,
+      "maximum_score": 1.8623492489654792,
+      "mean_score": 1.5854076557712085,
+      "median_score": 1.5925502905794662,
+      "metric": "largest_covariance_eigenvalue",
+      "n": 200,
+      "negative_class": "matched_autocorrelation",
+      "threshold": 1.4929874149291256
+    },
+    {
+      "crossing_count": 155,
+      "false_positive_rate": 0.775,
+      "maximum_score": 0.1551957707471233,
+      "mean_score": 0.1321173046476007,
+      "median_score": 0.13271252421495544,
+      "metric": "pca_rank1_explained_variance",
+      "n": 200,
+      "negative_class": "matched_autocorrelation",
+      "threshold": 0.12441561791076046
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.1670038975347687,
+      "mean_score": 0.1312538628008632,
+      "median_score": 0.1319827242240546,
+      "metric": "spectral_coherence",
+      "n": 200,
+      "negative_class": "matched_autocorrelation",
+      "threshold": 0.17054676045893405
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.6419978785410408,
+      "mean_score": 0.608091513946379,
+      "median_score": 0.6086698937893807,
+      "metric": "autocorrelation_persistence",
+      "n": 200,
+      "negative_class": "matched_autocorrelation",
+      "threshold": 0.7057475213919987
+    },
+    {
+      "crossing_count": 1,
+      "false_positive_rate": 0.005,
+      "maximum_score": 0.0497813970162638,
+      "mean_score": 0.021053171487076115,
+      "median_score": 0.0203188854567776,
+      "metric": "linear_CKA",
+      "n": 200,
+      "negative_class": "matched_autocorrelation",
+      "threshold": 0.04876170431019372
+    },
+    {
+      "crossing_count": 31,
+      "false_positive_rate": 0.155,
+      "maximum_score": 0.0398262042708652,
+      "mean_score": 0.03144746897518211,
+      "median_score": 0.03122293580751915,
+      "metric": "VAR_ARX_predictive",
+      "n": 200,
+      "negative_class": "matched_autocorrelation",
+      "threshold": 0.0342748237716478
+    },
+    {
+      "crossing_count": 37,
+      "false_positive_rate": 0.185,
+      "maximum_score": 0.2068957573871649,
+      "mean_score": 0.021428473299687636,
+      "median_score": 0.0,
+      "metric": "correlon_v1",
+      "n": 200,
+      "negative_class": "switching_mode",
+      "threshold": 0.05106167951270389
+    },
+    {
+      "crossing_count": 2,
+      "false_positive_rate": 0.01,
+      "maximum_score": 0.0972965910178773,
+      "mean_score": 0.06878693479450514,
+      "median_score": 0.0691347311031287,
+      "metric": "pearson",
+      "n": 200,
+      "negative_class": "switching_mode",
+      "threshold": 0.0909181011472309
+    },
+    {
+      "crossing_count": 1,
+      "false_positive_rate": 0.005,
+      "maximum_score": 0.0270108264001266,
+      "mean_score": 0.01376656475797656,
+      "median_score": 0.0138608007520837,
+      "metric": "mutual_information",
+      "n": 200,
+      "negative_class": "switching_mode",
+      "threshold": 0.0245425420479295
+    },
+    {
+      "crossing_count": 71,
+      "false_positive_rate": 0.355,
+      "maximum_score": 1.7137685741799196,
+      "mean_score": 1.4704212877793976,
+      "median_score": 1.464421206837287,
+      "metric": "largest_covariance_eigenvalue",
+      "n": 200,
+      "negative_class": "switching_mode",
+      "threshold": 1.4929874149291256
+    },
+    {
+      "crossing_count": 71,
+      "false_positive_rate": 0.355,
+      "maximum_score": 0.1428140478483267,
+      "mean_score": 0.12253510731494976,
+      "median_score": 0.1220351005697739,
+      "metric": "pca_rank1_explained_variance",
+      "n": 200,
+      "negative_class": "switching_mode",
+      "threshold": 0.12441561791076046
+    },
+    {
+      "crossing_count": 17,
+      "false_positive_rate": 0.085,
+      "maximum_score": 0.2105462204644979,
+      "mean_score": 0.13855099992837297,
+      "median_score": 0.13804916320175348,
+      "metric": "spectral_coherence",
+      "n": 200,
+      "negative_class": "switching_mode",
+      "threshold": 0.17054676045893405
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.6397014179816387,
+      "mean_score": 0.6124825292545659,
+      "median_score": 0.6119099134824053,
+      "metric": "autocorrelation_persistence",
+      "n": 200,
+      "negative_class": "switching_mode",
+      "threshold": 0.7057475213919987
+    },
+    {
+      "crossing_count": 2,
+      "false_positive_rate": 0.01,
+      "maximum_score": 0.055280172442413,
+      "mean_score": 0.028085418653228576,
+      "median_score": 0.028008463601651552,
+      "metric": "linear_CKA",
+      "n": 200,
+      "negative_class": "switching_mode",
+      "threshold": 0.04876170431019372
+    },
+    {
+      "crossing_count": 198,
+      "false_positive_rate": 0.99,
+      "maximum_score": 0.0500594983443701,
+      "mean_score": 0.042269608913851495,
+      "median_score": 0.0426484999747124,
+      "metric": "VAR_ARX_predictive",
+      "n": 200,
+      "negative_class": "switching_mode",
+      "threshold": 0.0342748237716478
+    },
+    {
+      "crossing_count": 30,
+      "false_positive_rate": 0.15,
+      "maximum_score": 0.1825493345184667,
+      "mean_score": 0.01683784185019159,
+      "median_score": 0.0,
+      "metric": "correlon_v1",
+      "n": 200,
+      "negative_class": "transient_mode",
+      "threshold": 0.05106167951270389
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.0827704149824539,
+      "mean_score": 0.06175199968770901,
+      "median_score": 0.06095349285442905,
+      "metric": "pearson",
+      "n": 200,
+      "negative_class": "transient_mode",
+      "threshold": 0.0909181011472309
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.0194559145108484,
+      "mean_score": 0.011535149142790524,
+      "median_score": 0.0111898502935084,
+      "metric": "mutual_information",
+      "n": 200,
+      "negative_class": "transient_mode",
+      "threshold": 0.0245425420479295
+    },
+    {
+      "crossing_count": 14,
+      "false_positive_rate": 0.07,
+      "maximum_score": 1.593370840652206,
+      "mean_score": 1.3935235049511134,
+      "median_score": 1.3839044401638871,
+      "metric": "largest_covariance_eigenvalue",
+      "n": 200,
+      "negative_class": "transient_mode",
+      "threshold": 1.4929874149291256
+    },
+    {
+      "crossing_count": 14,
+      "false_positive_rate": 0.07,
+      "maximum_score": 0.1327809033876838,
+      "mean_score": 0.11612695874592607,
+      "median_score": 0.1153253700136572,
+      "metric": "pca_rank1_explained_variance",
+      "n": 200,
+      "negative_class": "transient_mode",
+      "threshold": 0.12441561791076046
+    },
+    {
+      "crossing_count": 5,
+      "false_positive_rate": 0.025,
+      "maximum_score": 0.1826478630172488,
+      "mean_score": 0.13486214253889098,
+      "median_score": 0.13478433900274106,
+      "metric": "spectral_coherence",
+      "n": 200,
+      "negative_class": "transient_mode",
+      "threshold": 0.17054676045893405
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.631755551319448,
+      "mean_score": 0.601150020184142,
+      "median_score": 0.600340736321081,
+      "metric": "autocorrelation_persistence",
+      "n": 200,
+      "negative_class": "transient_mode",
+      "threshold": 0.7057475213919987
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.0402471997055324,
+      "mean_score": 0.022748063493255363,
+      "median_score": 0.02180623005985435,
+      "metric": "linear_CKA",
+      "n": 200,
+      "negative_class": "transient_mode",
+      "threshold": 0.04876170431019372
+    },
+    {
+      "crossing_count": 90,
+      "false_positive_rate": 0.45,
+      "maximum_score": 0.0439601144244287,
+      "mean_score": 0.03404429278707095,
+      "median_score": 0.0337593734358376,
+      "metric": "VAR_ARX_predictive",
+      "n": 200,
+      "negative_class": "transient_mode",
+      "threshold": 0.0342748237716478
+    },
+    {
+      "crossing_count": 38,
+      "false_positive_rate": 0.19,
+      "maximum_score": 0.1498372156310327,
+      "mean_score": 0.024730925276325307,
+      "median_score": 0.0,
+      "metric": "correlon_v1",
+      "n": 200,
+      "negative_class": "nonstationary_drift",
+      "threshold": 0.05106167951270389
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.3137186322943598,
+      "mean_score": 0.2483504224580456,
+      "median_score": 0.24881009225024348,
+      "metric": "pearson",
+      "n": 200,
+      "negative_class": "nonstationary_drift",
+      "threshold": 0.0909181011472309
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.0772742687164262,
+      "mean_score": 0.06665193687316853,
+      "median_score": 0.0664492744878957,
+      "metric": "mutual_information",
+      "n": 200,
+      "negative_class": "nonstationary_drift",
+      "threshold": 0.0245425420479295
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 4.341527493990647,
+      "mean_score": 3.565632486624321,
+      "median_score": 3.576484279606549,
+      "metric": "largest_covariance_eigenvalue",
+      "n": 200,
+      "negative_class": "nonstationary_drift",
+      "threshold": 1.4929874149291256
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.3617939578325538,
+      "mean_score": 0.29713604055202675,
+      "median_score": 0.29804035663387907,
+      "metric": "pca_rank1_explained_variance",
+      "n": 200,
+      "negative_class": "nonstationary_drift",
+      "threshold": 0.12441561791076046
+    },
+    {
+      "crossing_count": 8,
+      "false_positive_rate": 0.04,
+      "maximum_score": 0.1970878710718897,
+      "mean_score": 0.14033375593648953,
+      "median_score": 0.14107275577603864,
+      "metric": "spectral_coherence",
+      "n": 200,
+      "negative_class": "nonstationary_drift",
+      "threshold": 0.17054676045893405
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.3092123651652783,
+      "mean_score": 0.250399718804981,
+      "median_score": 0.2514067190831377,
+      "metric": "autocorrelation_persistence",
+      "n": 200,
+      "negative_class": "nonstationary_drift",
+      "threshold": 0.7057475213919987
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.4092755873512825,
+      "mean_score": 0.2911264540676284,
+      "median_score": 0.29301369872078886,
+      "metric": "linear_CKA",
+      "n": 200,
+      "negative_class": "nonstationary_drift",
+      "threshold": 0.04876170431019372
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.0586323725027857,
+      "mean_score": 0.046884444055947355,
+      "median_score": 0.0471932334619098,
+      "metric": "VAR_ARX_predictive",
+      "n": 200,
+      "negative_class": "nonstationary_drift",
+      "threshold": 0.0342748237716478
+    },
+    {
+      "crossing_count": 76,
+      "false_positive_rate": 0.38,
+      "maximum_score": 0.1206934568554326,
+      "mean_score": 0.036585924543631146,
+      "median_score": 0.034336148503263955,
+      "metric": "correlon_v1",
+      "n": 200,
+      "negative_class": "finite_sample_spurious",
+      "threshold": 0.05106167951270389
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.2805793127004051,
+      "mean_score": 0.2091986173878011,
+      "median_score": 0.2049970339794058,
+      "metric": "pearson",
+      "n": 200,
+      "negative_class": "finite_sample_spurious",
+      "threshold": 0.0909181011472309
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.2051856975496088,
+      "mean_score": 0.12337597652735167,
+      "median_score": 0.1175078564171123,
+      "metric": "mutual_information",
+      "n": 200,
+      "negative_class": "finite_sample_spurious",
+      "threshold": 0.0245425420479295
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 3.607304928483196,
+      "mean_score": 2.5968694472868763,
+      "median_score": 2.574423822058927,
+      "metric": "largest_covariance_eigenvalue",
+      "n": 200,
+      "negative_class": "finite_sample_spurious",
+      "threshold": 1.4929874149291256
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.3006087440402663,
+      "mean_score": 0.21640578727390625,
+      "median_score": 0.2145353185049105,
+      "metric": "pca_rank1_explained_variance",
+      "n": 200,
+      "negative_class": "finite_sample_spurious",
+      "threshold": 0.12441561791076046
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.1661449101310935,
+      "mean_score": 0.13121280234857613,
+      "median_score": 0.13486676965638034,
+      "metric": "spectral_coherence",
+      "n": 200,
+      "negative_class": "finite_sample_spurious",
+      "threshold": 0.17054676045893405
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.9691848918749568,
+      "mean_score": 0.9619480343198071,
+      "median_score": 0.9617792299271516,
+      "metric": "autocorrelation_persistence",
+      "n": 200,
+      "negative_class": "finite_sample_spurious",
+      "threshold": 0.7057475213919987
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.3745064477666821,
+      "mean_score": 0.21552930911482981,
+      "median_score": 0.2011777424885121,
+      "metric": "linear_CKA",
+      "n": 200,
+      "negative_class": "finite_sample_spurious",
+      "threshold": 0.04876170431019372
+    },
+    {
+      "crossing_count": 147,
+      "false_positive_rate": 0.735,
+      "maximum_score": 0.0437825620786262,
+      "mean_score": 0.036763801678600855,
+      "median_score": 0.03648476206735705,
+      "metric": "VAR_ARX_predictive",
+      "n": 200,
+      "negative_class": "finite_sample_spurious",
+      "threshold": 0.0342748237716478
+    },
+    {
+      "crossing_count": 191,
+      "false_positive_rate": 0.955,
+      "maximum_score": 0.4790768270863653,
+      "mean_score": 0.3213495072109536,
+      "median_score": 0.3507911419095153,
+      "metric": "correlon_v1",
+      "n": 200,
+      "negative_class": "mixture_without_relational_mechanism",
+      "threshold": 0.05106167951270389
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.1714135057079501,
+      "mean_score": 0.13594947834361087,
+      "median_score": 0.13553241665686885,
+      "metric": "pearson",
+      "n": 200,
+      "negative_class": "mixture_without_relational_mechanism",
+      "threshold": 0.0909181011472309
+    },
+    {
+      "crossing_count": 198,
+      "false_positive_rate": 0.99,
+      "maximum_score": 0.0582978106126874,
+      "mean_score": 0.03991092890638874,
+      "median_score": 0.04007415623155865,
+      "metric": "mutual_information",
+      "n": 200,
+      "negative_class": "mixture_without_relational_mechanism",
+      "threshold": 0.0245425420479295
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 2.544720772671349,
+      "mean_score": 2.0436795217907453,
+      "median_score": 2.020628250675946,
+      "metric": "largest_covariance_eigenvalue",
+      "n": 200,
+      "negative_class": "mixture_without_relational_mechanism",
+      "threshold": 1.4929874149291256
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.212060064389279,
+      "mean_score": 0.1703066268158954,
+      "median_score": 0.1683856875563288,
+      "metric": "pca_rank1_explained_variance",
+      "n": 200,
+      "negative_class": "mixture_without_relational_mechanism",
+      "threshold": 0.12441561791076046
+    },
+    {
+      "crossing_count": 79,
+      "false_positive_rate": 0.395,
+      "maximum_score": 0.2938210528499081,
+      "mean_score": 0.16814351516728823,
+      "median_score": 0.1592736987567099,
+      "metric": "spectral_coherence",
+      "n": 200,
+      "negative_class": "mixture_without_relational_mechanism",
+      "threshold": 0.17054676045893405
+    },
+    {
+      "crossing_count": 0,
+      "false_positive_rate": 0.0,
+      "maximum_score": 0.2295845762260167,
+      "mean_score": 0.1857305689158824,
+      "median_score": 0.1866372948940479,
+      "metric": "autocorrelation_persistence",
+      "n": 200,
+      "negative_class": "mixture_without_relational_mechanism",
+      "threshold": 0.7057475213919987
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.1562350292094028,
+      "mean_score": 0.10419298457264209,
+      "median_score": 0.10249286729116115,
+      "metric": "linear_CKA",
+      "n": 200,
+      "negative_class": "mixture_without_relational_mechanism",
+      "threshold": 0.04876170431019372
+    },
+    {
+      "crossing_count": 200,
+      "false_positive_rate": 1.0,
+      "maximum_score": 0.0636554664980737,
+      "mean_score": 0.05024027070268795,
+      "median_score": 0.0496732120147657,
+      "metric": "VAR_ARX_predictive",
+      "n": 200,
+      "negative_class": "mixture_without_relational_mechanism",
+      "threshold": 0.0342748237716478
+    }
+  ],
+  "implementation_manifest": {
+    "combined_sha256": "3449b49161ccf867b39540cf9f6146dfe46f64c59ce238f582427b250a4872cf",
+    "files": {
+      "CORRELON_ZERO_PREREGISTRATION.md": "d95222cbe29e11b86fd7eddca96bd8101aaf47f40ab785fbb6820aebf2bea5cc",
+      "experiments/correlon_zero/adversary.py": "5c1cc33498cc9a760c6cffec9ef0b5b0e567ec4364ba4e5d6cfa1a799cd144b5",
+      "experiments/correlon_zero/analysis.py": "dd49ec823ccc5543544a726057e2e9ffccd24162e0472148dfac305544608ebb",
+      "experiments/correlon_zero/baselines.py": "ca79885b6788e1bd594c97e923466f208dfba8c7f036ecc17024bf8968987fd0",
+      "experiments/correlon_zero/config.json": "409041e740e3a8758bf8b8fcc72d55e885efe0ec3775bcb52ee0dbf834c58655",
+      "experiments/correlon_zero/generators.py": "0d3570ace3ae55bd965554cb337a320bf26224a3aca77fb485ecb44fb3c57b50",
+      "experiments/correlon_zero/metrics.py": "b384d939439b84d7073076c0ebf4101e4fa3a05b2a295e7f7074f22f1dd49986",
+      "experiments/correlon_zero/run_correlon_zero.py": "daecfe5b87a1de381b5240d2c6251c048f41248f43728e463a3cdae3c0c867e0",
+      "experiments/correlon_zero/transforms.py": "2bd015651a21640b93c399d262a89aac6b0dfff7942d348fefaa532a03bee426",
+      "experiments/correlon_zero/validation.py": "e37eac66d2492849637d46e0aa374a2ac9270935ca6d6b75af01c5b5fdf211d6",
+      "tests/test_correlon_zero_transforms.py": "d44d5c1e0af2e97e55c845207c9912b057a97c18bb344fe93ea47ba247b5708f"
+    },
+    "git": {
+      "branch": "agent/correlon-zero-adversarial-invariance",
+      "commit": "cb07d84bec9232b8ed2bd9aaff873b33318db626"
+    },
+    "protocol": "CORRELON_ZERO_ADVERSARIAL_INVARIANCE_FALSIFICATION_v1.0",
+    "version": "1.0"
+  },
+  "metric_summary": {
+    "VAR_ARX_predictive": {
+      "D": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.9806241869172232,
+        "mean_CI95": [
+          0.9756977894241871,
+          0.9852655948376554
+        ],
+        "median": 1.0,
+        "n": 200,
+        "q05": 0.9044248491883873,
+        "standard_deviation": 0.03446901614886892
+      },
+      "Delta": {
+        "failure_count_Delta_le_zero": 184,
+        "mean": -0.0817840098964059,
+        "mean_CI95": [
+          -0.09114401140837981,
+          -0.07258213015183573
+        ],
+        "median": -0.07487594079047277,
+        "n": 200,
+        "q05": -0.2056991558835763,
+        "standard_deviation": 0.06707532528355829
+      },
+      "P": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.8988401770208173,
+        "mean_CI95": [
+          0.8908525524735715,
+          0.906960782689024
+        ],
+        "median": 0.9055018845109895,
+        "n": 200,
+        "q05": 0.791204442539274,
+        "standard_deviation": 0.059410247783662544
+      },
+      "strongest_destroy_transform": "D6_common_driver_replacement",
+      "weakest_preserve_transform": "P2_global_scaling"
+    },
+    "autocorrelation_persistence": {
+      "D": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.999991455823734,
+        "mean_CI95": [
+          0.999978974048887,
+          1.0
+        ],
+        "median": 1.0,
+        "n": 200,
+        "q05": 1.0,
+        "standard_deviation": 7.985579110685169e-05
+      },
+      "Delta": {
+        "failure_count_Delta_le_zero": 200,
+        "mean": -0.2001523348956396,
+        "mean_CI95": [
+          -0.20196040220913708,
+          -0.19835996031632414
+        ],
+        "median": -0.19999171792025372,
+        "n": 200,
+        "q05": -0.2237242597425957,
+        "standard_deviation": 0.013140010528181697
+      },
+      "P": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.7998391209280945,
+        "mean_CI95": [
+          0.7979849323422391,
+          0.8016813245404342
+        ],
+        "median": 0.8000082820797463,
+        "n": 200,
+        "q05": 0.7762757402574043,
+        "standard_deviation": 0.013135188698576434
+      },
+      "strongest_destroy_transform": "D5_source_swap",
+      "weakest_preserve_transform": "P7_coarse_graining"
+    },
+    "correlon_v1": {
+      "D": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 1.0,
+        "mean_CI95": [
+          1.0,
+          1.0
+        ],
+        "median": 1.0,
+        "n": 200,
+        "q05": 1.0,
+        "standard_deviation": 0.0
+      },
+      "Delta": {
+        "failure_count_Delta_le_zero": 200,
+        "mean": -0.994161593426262,
+        "mean_CI95": [
+          -1.0,
+          -0.9863400983461493
+        ],
+        "median": -1.0,
+        "n": 200,
+        "q05": -1.0,
+        "standard_deviation": 0.050738599972668504
+      },
+      "P": {
+        "failure_count_Delta_le_zero": 197,
+        "mean": 0.005838406573738015,
+        "mean_CI95": [
+          0.0,
+          0.01402749636025799
+        ],
+        "median": 0.0,
+        "n": 200,
+        "q05": 0.0,
+        "standard_deviation": 0.050738599972668504
+      },
+      "strongest_destroy_transform": "D6_common_driver_replacement",
+      "weakest_preserve_transform": "P6_time_reparameterization"
+    },
+    "largest_covariance_eigenvalue": {
+      "D": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.9981391745267004,
+        "mean_CI95": [
+          0.9970512480370085,
+          0.9990854392758234
+        ],
+        "median": 1.0,
+        "n": 200,
+        "q05": 0.9882259057714756,
+        "standard_deviation": 0.007402216570485485
+      },
+      "Delta": {
+        "failure_count_Delta_le_zero": 200,
+        "mean": -0.13430163913231577,
+        "mean_CI95": [
+          -0.13728648863650364,
+          -0.1314915598025547
+        ],
+        "median": -0.13302209121724645,
+        "n": 200,
+        "q05": -0.16145335536930389,
+        "standard_deviation": 0.02071014415521738
+      },
+      "P": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.8638375353943847,
+        "mean_CI95": [
+          0.8612129142536162,
+          0.8662588108483034
+        ],
+        "median": 0.8662299217889842,
+        "n": 200,
+        "q05": 0.8385466446306962,
+        "standard_deviation": 0.018268497316249504
+      },
+      "strongest_destroy_transform": "D7_history_destruction",
+      "weakest_preserve_transform": "P2_global_scaling"
+    },
+    "linear_CKA": {
+      "D": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.9865121261981813,
+        "mean_CI95": [
+          0.9802029430661934,
+          0.991804630861921
+        ],
+        "median": 1.0,
+        "n": 200,
+        "q05": 0.8951023882317963,
+        "standard_deviation": 0.04168534919181908
+      },
+      "Delta": {
+        "failure_count_Delta_le_zero": 200,
+        "mean": -0.4542593223116441,
+        "mean_CI95": [
+          -0.4756546873551265,
+          -0.43242070383310816
+        ],
+        "median": -0.45454143931207286,
+        "n": 200,
+        "q05": -0.6823071944067839,
+        "standard_deviation": 0.15383023127430484
+      },
+      "P": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.5322528038865372,
+        "mean_CI95": [
+          0.5120270446069383,
+          0.5525923337362121
+        ],
+        "median": 0.5389453230383497,
+        "n": 200,
+        "q05": 0.3163333358507212,
+        "standard_deviation": 0.14693167872427504
+      },
+      "strongest_destroy_transform": "D2_phase_randomization",
+      "weakest_preserve_transform": "P2_global_scaling"
+    },
+    "mutual_information": {
+      "D": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.9901289484126172,
+        "mean_CI95": [
+          0.9851481172389543,
+          0.9945945348547375
+        ],
+        "median": 1.0,
+        "n": 200,
+        "q05": 0.9145763763050141,
+        "standard_deviation": 0.033910910297804235
+      },
+      "Delta": {
+        "failure_count_Delta_le_zero": 181,
+        "mean": -0.023673147301594418,
+        "mean_CI95": [
+          -0.02875255989509311,
+          -0.018208847067702632
+        ],
+        "median": -0.02830961822283462,
+        "n": 200,
+        "q05": -0.07003304731502226,
+        "standard_deviation": 0.037760956447203814
+      },
+      "P": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.9664558011110228,
+        "mean_CI95": [
+          0.9636201422625872,
+          0.9691759070277888
+        ],
+        "median": 0.9690680855042428,
+        "n": 200,
+        "q05": 0.9299669526849778,
+        "standard_deviation": 0.019875359973963502
+      },
+      "strongest_destroy_transform": "D2_phase_randomization",
+      "weakest_preserve_transform": "P5_observation_noise"
+    },
+    "pca_rank1_explained_variance": {
+      "D": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.9981391745267004,
+        "mean_CI95": [
+          0.9969708504312373,
+          0.9990583082973754
+        ],
+        "median": 1.0,
+        "n": 200,
+        "q05": 0.9882259057714756,
+        "standard_deviation": 0.007402216570485455
+      },
+      "Delta": {
+        "failure_count_Delta_le_zero": 186,
+        "mean": -0.015036400298369789,
+        "mean_CI95": [
+          -0.019536049632898542,
+          -0.010951706714891986
+        ],
+        "median": -0.009109229082121806,
+        "n": 200,
+        "q05": -0.07051514396011352,
+        "standard_deviation": 0.030918233276166062
+      },
+      "P": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.9831027742283307,
+        "mean_CI95": [
+          0.9786528138508621,
+          0.9869599077260737
+        ],
+        "median": 0.9905839432201857,
+        "n": 200,
+        "q05": 0.9294848560398865,
+        "standard_deviation": 0.029948537954699955
+      },
+      "strongest_destroy_transform": "D7_history_destruction",
+      "weakest_preserve_transform": "P2_global_scaling"
+    },
+    "pearson": {
+      "D": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.9923171222356447,
+        "mean_CI95": [
+          0.988862069876754,
+          0.995404155352451
+        ],
+        "median": 1.0,
+        "n": 200,
+        "q05": 0.9419473081162457,
+        "standard_deviation": 0.02356611106629915
+      },
+      "Delta": {
+        "failure_count_Delta_le_zero": 193,
+        "mean": -0.10008825419000553,
+        "mean_CI95": [
+          -0.10841850090971727,
+          -0.09192753187349022
+        ],
+        "median": -0.09457226356442561,
+        "n": 200,
+        "q05": -0.20869162089575635,
+        "standard_deviation": 0.05880272559948714
+      },
+      "P": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.8922288680456393,
+        "mean_CI95": [
+          0.8846288820116567,
+          0.8993740296394963
+        ],
+        "median": 0.9029134213335578,
+        "n": 200,
+        "q05": 0.7893026362360822,
+        "standard_deviation": 0.052884651526688205
+      },
+      "strongest_destroy_transform": "D2_phase_randomization",
+      "weakest_preserve_transform": "P4_orthogonal_basis_rotation"
+    },
+    "spectral_coherence": {
+      "D": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.9995352352380807,
+        "mean_CI95": [
+          0.9989595784005187,
+          0.9999292255765643
+        ],
+        "median": 1.0,
+        "n": 200,
+        "q05": 1.0,
+        "standard_deviation": 0.003564018648407158
+      },
+      "Delta": {
+        "failure_count_Delta_le_zero": 200,
+        "mean": -0.339742256263731,
+        "mean_CI95": [
+          -0.3557587564973729,
+          -0.3239447722778598
+        ],
+        "median": -0.3437850847645935,
+        "n": 200,
+        "q05": -0.5186677454919106,
+        "standard_deviation": 0.11868486308667284
+      },
+      "P": {
+        "failure_count_Delta_le_zero": 0,
+        "mean": 0.6597929789743497,
+        "mean_CI95": [
+          0.6430852241759566,
+          0.6764476568162707
+        ],
+        "median": 0.6562149152354064,
+        "n": 200,
+        "q05": 0.4781398710297118,
+        "standard_deviation": 0.1189806066553391
+      },
+      "strongest_destroy_transform": "D2_phase_randomization",
+      "weakest_preserve_transform": "P2_global_scaling"
+    }
+  },
+  "negative_classes": [
+    "independent_noise",
+    "common_driver",
+    "matched_low_rank",
+    "matched_spectrum",
+    "matched_autocorrelation",
+    "switching_mode",
+    "transient_mode",
+    "nonstationary_drift",
+    "finite_sample_spurious",
+    "mixture_without_relational_mechanism"
+  ],
+  "nonsemantic_amendments": [
+    {
+      "file": "experiments/correlon_zero/analysis.py",
+      "reason": "replace pandas attribute access transform.transform with transform['transform'] after all 200 raw seeds were saved",
+      "scientific_effect": "none; no score, seed, threshold, generator, transformation, baseline, or raw CSV changed"
+    },
+    {
+      "file": "experiments/correlon_zero/analysis.py",
+      "reason": "add explicit zero-to-zero score-floor diagnostics and repair overlapping figure/report labels during artifact QA",
+      "scientific_effect": "none; formal decision precedence and every frozen scientific value remain unchanged"
+    }
+  ],
+  "positive_thresholds": {
+    "VAR_ARX_predictive": 0.0342748237716478,
+    "autocorrelation_persistence": 0.7057475213919987,
+    "correlon_v1": 0.05106167951270389,
+    "largest_covariance_eigenvalue": 1.4929874149291256,
+    "linear_CKA": 0.04876170431019372,
+    "mutual_information": 0.0245425420479295,
+    "pca_rank1_explained_variance": 0.12441561791076046,
+    "pearson": 0.0909181011472309,
+    "spectral_coherence": 0.17054676045893405
+  },
+  "pre_adversary_failure_flags": {
+    "baseline_equals_or_exceeds": true,
+    "common_driver": true,
+    "matched_null": true,
+    "representation_dependence": true
+  },
+  "protocol": "CORRELON_ZERO_ADVERSARIAL_INVARIANCE_FALSIFICATION_v1.0",
+  "representation_audit": {
+    "any_absolute_score_change": false,
+    "empirical_interpretation": "P1 and P4 preserved the absolute Correlon v1 score to within 1e-12 in every target-world case; the formal representation flag is entirely induced by the frozen zero-to-zero retention convention. The underlying empirical defect is target-score floor/sensitivity failure, not observed coordinate dependence.",
+    "failure_rates": {
+      "P1_node_permutation": 0.43666666666666665,
+      "P4_orthogonal_basis_rotation": 0.43666666666666665
+    },
+    "formal_rule_caveat": "The preregistered retention maps score 0 transformed to score 0 onto retention 0. P1/P4 formal failures must therefore be separated from absolute score change.",
+    "maximum_failure_rate": 0.43666666666666665,
+    "retention_threshold": 0.9,
+    "score_equality_diagnostics": {
+      "P1_node_permutation": {
+        "base_zero_count": 262,
+        "base_zero_rate": 0.43666666666666665,
+        "interpretation": "formal failures are zero-to-zero floor cases",
+        "maximum_absolute_score_difference": 7.993605777301127e-15,
+        "n": 600,
+        "nonzero_score_mean_retention": 0.9999999999999805,
+        "nonzero_score_minimum_retention": 0.9999999999983932
+      },
+      "P4_orthogonal_basis_rotation": {
+        "base_zero_count": 262,
+        "base_zero_rate": 0.43666666666666665,
+        "interpretation": "formal failures are zero-to-zero floor cases",
+        "maximum_absolute_score_difference": 9.59995971605565e-15,
+        "n": 600,
+        "nonzero_score_mean_retention": 0.9999999999999699,
+        "nonzero_score_minimum_retention": 0.9999999999980964
+      }
+    },
+    "target_base_zero_count": 262,
+    "target_base_zero_rate": 0.43666666666666665,
+    "unique_target_world_count": 600
+  },
+  "scientific_freeze_manifest": {
+    "combined_sha256": "efb4511ff21476614d01ec9449f24b4f3d92deabdd35995ae997cf376503b16c",
+    "files": {
+      "CORRELON_ZERO_PREREGISTRATION.md": "d95222cbe29e11b86fd7eddca96bd8101aaf47f40ab785fbb6820aebf2bea5cc",
+      "experiments/correlon_zero/adversary.py": "5c1cc33498cc9a760c6cffec9ef0b5b0e567ec4364ba4e5d6cfa1a799cd144b5",
+      "experiments/correlon_zero/analysis.py": "ea20db78e4d192a8ef9b0b21acbb3ff762429f0967020e8503c6a8d9022030dd",
+      "experiments/correlon_zero/baselines.py": "ca79885b6788e1bd594c97e923466f208dfba8c7f036ecc17024bf8968987fd0",
+      "experiments/correlon_zero/config.json": "409041e740e3a8758bf8b8fcc72d55e885efe0ec3775bcb52ee0dbf834c58655",
+      "experiments/correlon_zero/generators.py": "0d3570ace3ae55bd965554cb337a320bf26224a3aca77fb485ecb44fb3c57b50",
+      "experiments/correlon_zero/metrics.py": "b384d939439b84d7073076c0ebf4101e4fa3a05b2a295e7f7074f22f1dd49986",
+      "experiments/correlon_zero/run_correlon_zero.py": "a4cc94e81cc0bef0ccc7f7e63f79d5429f4dde632c69a26bdc287f9f7b97a699",
+      "experiments/correlon_zero/transforms.py": "2bd015651a21640b93c399d262a89aac6b0dfff7942d348fefaa532a03bee426",
+      "experiments/correlon_zero/validation.py": "e37eac66d2492849637d46e0aa374a2ac9270935ca6d6b75af01c5b5fdf211d6",
+      "tests/test_correlon_zero_transforms.py": "d44d5c1e0af2e97e55c845207c9912b057a97c18bb344fe93ea47ba247b5708f"
+    },
+    "git": {
+      "branch": "agent/correlon-zero-adversarial-invariance",
+      "commit": "85441016bb013e6b1e38e7e4dd0b46cfed6eb3bb"
+    },
+    "protocol": "CORRELON_ZERO_ADVERSARIAL_INVARIANCE_FALSIFICATION_v1.0",
+    "version": "1.0"
+  },
+  "seed_count": 200,
+  "seed_start": 10000,
+  "stage": "confirmatory_and_adversarial_complete",
+  "target_classes": [
+    "persistent_shared_mode",
+    "direct_coupling_SCM",
+    "history_dependent_relational_mode"
+  ],
+  "version": "1.0"
+}

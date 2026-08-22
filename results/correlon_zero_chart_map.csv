@@ -1,0 +1,9 @@
+figure,family,source,qa
+correlon_zero_preservation_by_transform.png,heatmap,results/correlon_zero_transform_results.csv,passed independent pixel and finite-value inspection
+correlon_zero_destroy_residual_by_transform.png,heatmap,results/correlon_zero_transform_results.csv,passed independent pixel and finite-value inspection
+correlon_zero_delta_distribution.png,boxplot,results/correlon_zero_seed_results.csv,passed independent pixel and finite-value inspection
+correlon_zero_vs_strongest_baseline.png,scatter,results/correlon_zero_seed_results.csv,passed independent pixel and finite-value inspection
+correlon_zero_false_positive_rate.png,bar,results/correlon_zero_negative_scores.csv,passed independent pixel and finite-value inspection
+correlon_zero_adversarial_trajectory.png,line,results/correlon_zero_adversarial_cases.csv,passed independent pixel and finite-value inspection
+correlon_zero_best_adversarial_example.png,time-series and lag,results/correlon_zero_best_adversarial.npz,passed independent pixel and finite-value inspection
+correlon_zero_preserve_destroy_plane.png,scatter,results/correlon_zero_world_results.csv + results/correlon_zero_null_plane.csv,passed independent pixel and finite-value inspection

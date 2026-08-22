@@ -1,0 +1,773 @@
+{
+  "adversary_crossings": 82,
+  "adversary_maximum": 0.7430832868024942,
+  "all_checks_pass": true,
+  "checks": {
+    "adversary_recomputation_match": true,
+    "all_values_finite": true,
+    "false_positive_rates_match": true,
+    "figure_qa_pass": true,
+    "implementation_manifest_match": true,
+    "paired_advantage_match": true,
+    "primary_delta_point_estimates_match": true,
+    "row_counts_match": true,
+    "seed_aggregates_match": true,
+    "strongest_baseline_selection_match": true
+  },
+  "expected_row_counts": {
+    "adversary_rows": 300,
+    "negative_rows": 18000,
+    "seed_rows": 1800,
+    "transform_rows": 81000,
+    "world_rows": 5400
+  },
+  "figure_checks": [
+    {
+      "bytes": 147677,
+      "exists": true,
+      "finite": true,
+      "height": 1216,
+      "path": "figures\\correlon_zero_preservation_by_transform.png",
+      "qa_pass": true,
+      "width": 2251
+    },
+    {
+      "bytes": 173449,
+      "exists": true,
+      "finite": true,
+      "height": 1216,
+      "path": "figures\\correlon_zero_destroy_residual_by_transform.png",
+      "qa_pass": true,
+      "width": 2251
+    },
+    {
+      "bytes": 134932,
+      "exists": true,
+      "finite": true,
+      "height": 1139,
+      "path": "figures\\correlon_zero_delta_distribution.png",
+      "qa_pass": true,
+      "width": 2361
+    },
+    {
+      "bytes": 79393,
+      "exists": true,
+      "finite": true,
+      "height": 1219,
+      "path": "figures\\correlon_zero_vs_strongest_baseline.png",
+      "qa_pass": true,
+      "width": 1340
+    },
+    {
+      "bytes": 85356,
+      "exists": true,
+      "finite": true,
+      "height": 1219,
+      "path": "figures\\correlon_zero_false_positive_rate.png",
+      "qa_pass": true,
+      "width": 1819
+    },
+    {
+      "bytes": 60467,
+      "exists": true,
+      "finite": true,
+      "height": 980,
+      "path": "figures\\correlon_zero_adversarial_trajectory.png",
+      "qa_pass": true,
+      "width": 1820
+    },
+    {
+      "bytes": 376621,
+      "exists": true,
+      "finite": true,
+      "height": 1338,
+      "path": "figures\\correlon_zero_best_adversarial_example.png",
+      "qa_pass": true,
+      "width": 2002
+    },
+    {
+      "bytes": 334332,
+      "exists": true,
+      "finite": true,
+      "height": 1342,
+      "path": "figures\\correlon_zero_preserve_destroy_plane.png",
+      "qa_pass": true,
+      "width": 2097
+    }
+  ],
+  "fpr_checks": [
+    {
+      "match": true,
+      "metric": "correlon_v1",
+      "negative_class": "independent_noise",
+      "recomputed": 0.075,
+      "recorded": 0.075
+    },
+    {
+      "match": true,
+      "metric": "pearson",
+      "negative_class": "independent_noise",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "mutual_information",
+      "negative_class": "independent_noise",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "largest_covariance_eigenvalue",
+      "negative_class": "independent_noise",
+      "recomputed": 0.165,
+      "recorded": 0.165
+    },
+    {
+      "match": true,
+      "metric": "pca_rank1_explained_variance",
+      "negative_class": "independent_noise",
+      "recomputed": 0.165,
+      "recorded": 0.165
+    },
+    {
+      "match": true,
+      "metric": "spectral_coherence",
+      "negative_class": "independent_noise",
+      "recomputed": 0.02,
+      "recorded": 0.02
+    },
+    {
+      "match": true,
+      "metric": "autocorrelation_persistence",
+      "negative_class": "independent_noise",
+      "recomputed": 0.125,
+      "recorded": 0.125
+    },
+    {
+      "match": true,
+      "metric": "linear_CKA",
+      "negative_class": "independent_noise",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "VAR_ARX_predictive",
+      "negative_class": "independent_noise",
+      "recomputed": 0.16,
+      "recorded": 0.16
+    },
+    {
+      "match": true,
+      "metric": "correlon_v1",
+      "negative_class": "common_driver",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "pearson",
+      "negative_class": "common_driver",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "mutual_information",
+      "negative_class": "common_driver",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "largest_covariance_eigenvalue",
+      "negative_class": "common_driver",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "pca_rank1_explained_variance",
+      "negative_class": "common_driver",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "spectral_coherence",
+      "negative_class": "common_driver",
+      "recomputed": 0.995,
+      "recorded": 0.995
+    },
+    {
+      "match": true,
+      "metric": "autocorrelation_persistence",
+      "negative_class": "common_driver",
+      "recomputed": 0.195,
+      "recorded": 0.195
+    },
+    {
+      "match": true,
+      "metric": "linear_CKA",
+      "negative_class": "common_driver",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "VAR_ARX_predictive",
+      "negative_class": "common_driver",
+      "recomputed": 0.98,
+      "recorded": 0.98
+    },
+    {
+      "match": true,
+      "metric": "correlon_v1",
+      "negative_class": "matched_low_rank",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "pearson",
+      "negative_class": "matched_low_rank",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "mutual_information",
+      "negative_class": "matched_low_rank",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "largest_covariance_eigenvalue",
+      "negative_class": "matched_low_rank",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "pca_rank1_explained_variance",
+      "negative_class": "matched_low_rank",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "spectral_coherence",
+      "negative_class": "matched_low_rank",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "autocorrelation_persistence",
+      "negative_class": "matched_low_rank",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "linear_CKA",
+      "negative_class": "matched_low_rank",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "VAR_ARX_predictive",
+      "negative_class": "matched_low_rank",
+      "recomputed": 0.135,
+      "recorded": 0.135
+    },
+    {
+      "match": true,
+      "metric": "correlon_v1",
+      "negative_class": "matched_spectrum",
+      "recomputed": 0.08,
+      "recorded": 0.08
+    },
+    {
+      "match": true,
+      "metric": "pearson",
+      "negative_class": "matched_spectrum",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "mutual_information",
+      "negative_class": "matched_spectrum",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "largest_covariance_eigenvalue",
+      "negative_class": "matched_spectrum",
+      "recomputed": 0.04,
+      "recorded": 0.04
+    },
+    {
+      "match": true,
+      "metric": "pca_rank1_explained_variance",
+      "negative_class": "matched_spectrum",
+      "recomputed": 0.04,
+      "recorded": 0.04
+    },
+    {
+      "match": true,
+      "metric": "spectral_coherence",
+      "negative_class": "matched_spectrum",
+      "recomputed": 0.015,
+      "recorded": 0.015
+    },
+    {
+      "match": true,
+      "metric": "autocorrelation_persistence",
+      "negative_class": "matched_spectrum",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "linear_CKA",
+      "negative_class": "matched_spectrum",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "VAR_ARX_predictive",
+      "negative_class": "matched_spectrum",
+      "recomputed": 0.17,
+      "recorded": 0.17
+    },
+    {
+      "match": true,
+      "metric": "correlon_v1",
+      "negative_class": "matched_autocorrelation",
+      "recomputed": 0.135,
+      "recorded": 0.135
+    },
+    {
+      "match": true,
+      "metric": "pearson",
+      "negative_class": "matched_autocorrelation",
+      "recomputed": 0.005,
+      "recorded": 0.005
+    },
+    {
+      "match": true,
+      "metric": "mutual_information",
+      "negative_class": "matched_autocorrelation",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "largest_covariance_eigenvalue",
+      "negative_class": "matched_autocorrelation",
+      "recomputed": 0.775,
+      "recorded": 0.775
+    },
+    {
+      "match": true,
+      "metric": "pca_rank1_explained_variance",
+      "negative_class": "matched_autocorrelation",
+      "recomputed": 0.775,
+      "recorded": 0.775
+    },
+    {
+      "match": true,
+      "metric": "spectral_coherence",
+      "negative_class": "matched_autocorrelation",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "autocorrelation_persistence",
+      "negative_class": "matched_autocorrelation",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "linear_CKA",
+      "negative_class": "matched_autocorrelation",
+      "recomputed": 0.005,
+      "recorded": 0.005
+    },
+    {
+      "match": true,
+      "metric": "VAR_ARX_predictive",
+      "negative_class": "matched_autocorrelation",
+      "recomputed": 0.155,
+      "recorded": 0.155
+    },
+    {
+      "match": true,
+      "metric": "correlon_v1",
+      "negative_class": "switching_mode",
+      "recomputed": 0.185,
+      "recorded": 0.185
+    },
+    {
+      "match": true,
+      "metric": "pearson",
+      "negative_class": "switching_mode",
+      "recomputed": 0.01,
+      "recorded": 0.01
+    },
+    {
+      "match": true,
+      "metric": "mutual_information",
+      "negative_class": "switching_mode",
+      "recomputed": 0.005,
+      "recorded": 0.005
+    },
+    {
+      "match": true,
+      "metric": "largest_covariance_eigenvalue",
+      "negative_class": "switching_mode",
+      "recomputed": 0.355,
+      "recorded": 0.355
+    },
+    {
+      "match": true,
+      "metric": "pca_rank1_explained_variance",
+      "negative_class": "switching_mode",
+      "recomputed": 0.355,
+      "recorded": 0.355
+    },
+    {
+      "match": true,
+      "metric": "spectral_coherence",
+      "negative_class": "switching_mode",
+      "recomputed": 0.085,
+      "recorded": 0.085
+    },
+    {
+      "match": true,
+      "metric": "autocorrelation_persistence",
+      "negative_class": "switching_mode",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "linear_CKA",
+      "negative_class": "switching_mode",
+      "recomputed": 0.01,
+      "recorded": 0.01
+    },
+    {
+      "match": true,
+      "metric": "VAR_ARX_predictive",
+      "negative_class": "switching_mode",
+      "recomputed": 0.99,
+      "recorded": 0.99
+    },
+    {
+      "match": true,
+      "metric": "correlon_v1",
+      "negative_class": "transient_mode",
+      "recomputed": 0.15,
+      "recorded": 0.15
+    },
+    {
+      "match": true,
+      "metric": "pearson",
+      "negative_class": "transient_mode",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "mutual_information",
+      "negative_class": "transient_mode",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "largest_covariance_eigenvalue",
+      "negative_class": "transient_mode",
+      "recomputed": 0.07,
+      "recorded": 0.07
+    },
+    {
+      "match": true,
+      "metric": "pca_rank1_explained_variance",
+      "negative_class": "transient_mode",
+      "recomputed": 0.07,
+      "recorded": 0.07
+    },
+    {
+      "match": true,
+      "metric": "spectral_coherence",
+      "negative_class": "transient_mode",
+      "recomputed": 0.025,
+      "recorded": 0.025
+    },
+    {
+      "match": true,
+      "metric": "autocorrelation_persistence",
+      "negative_class": "transient_mode",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "linear_CKA",
+      "negative_class": "transient_mode",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "VAR_ARX_predictive",
+      "negative_class": "transient_mode",
+      "recomputed": 0.45,
+      "recorded": 0.45
+    },
+    {
+      "match": true,
+      "metric": "correlon_v1",
+      "negative_class": "nonstationary_drift",
+      "recomputed": 0.19,
+      "recorded": 0.19
+    },
+    {
+      "match": true,
+      "metric": "pearson",
+      "negative_class": "nonstationary_drift",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "mutual_information",
+      "negative_class": "nonstationary_drift",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "largest_covariance_eigenvalue",
+      "negative_class": "nonstationary_drift",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "pca_rank1_explained_variance",
+      "negative_class": "nonstationary_drift",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "spectral_coherence",
+      "negative_class": "nonstationary_drift",
+      "recomputed": 0.04,
+      "recorded": 0.04
+    },
+    {
+      "match": true,
+      "metric": "autocorrelation_persistence",
+      "negative_class": "nonstationary_drift",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "linear_CKA",
+      "negative_class": "nonstationary_drift",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "VAR_ARX_predictive",
+      "negative_class": "nonstationary_drift",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "correlon_v1",
+      "negative_class": "finite_sample_spurious",
+      "recomputed": 0.38,
+      "recorded": 0.38
+    },
+    {
+      "match": true,
+      "metric": "pearson",
+      "negative_class": "finite_sample_spurious",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "mutual_information",
+      "negative_class": "finite_sample_spurious",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "largest_covariance_eigenvalue",
+      "negative_class": "finite_sample_spurious",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "pca_rank1_explained_variance",
+      "negative_class": "finite_sample_spurious",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "spectral_coherence",
+      "negative_class": "finite_sample_spurious",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "autocorrelation_persistence",
+      "negative_class": "finite_sample_spurious",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "linear_CKA",
+      "negative_class": "finite_sample_spurious",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "VAR_ARX_predictive",
+      "negative_class": "finite_sample_spurious",
+      "recomputed": 0.735,
+      "recorded": 0.735
+    },
+    {
+      "match": true,
+      "metric": "correlon_v1",
+      "negative_class": "mixture_without_relational_mechanism",
+      "recomputed": 0.955,
+      "recorded": 0.955
+    },
+    {
+      "match": true,
+      "metric": "pearson",
+      "negative_class": "mixture_without_relational_mechanism",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "mutual_information",
+      "negative_class": "mixture_without_relational_mechanism",
+      "recomputed": 0.99,
+      "recorded": 0.99
+    },
+    {
+      "match": true,
+      "metric": "largest_covariance_eigenvalue",
+      "negative_class": "mixture_without_relational_mechanism",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "pca_rank1_explained_variance",
+      "negative_class": "mixture_without_relational_mechanism",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "spectral_coherence",
+      "negative_class": "mixture_without_relational_mechanism",
+      "recomputed": 0.395,
+      "recorded": 0.395
+    },
+    {
+      "match": true,
+      "metric": "autocorrelation_persistence",
+      "negative_class": "mixture_without_relational_mechanism",
+      "recomputed": 0.0,
+      "recorded": 0.0
+    },
+    {
+      "match": true,
+      "metric": "linear_CKA",
+      "negative_class": "mixture_without_relational_mechanism",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    },
+    {
+      "match": true,
+      "metric": "VAR_ARX_predictive",
+      "negative_class": "mixture_without_relational_mechanism",
+      "recomputed": 1.0,
+      "recorded": 1.0
+    }
+  ],
+  "implementation_manifest": {
+    "combined_sha256": "3449b49161ccf867b39540cf9f6146dfe46f64c59ce238f582427b250a4872cf",
+    "files": {
+      "CORRELON_ZERO_PREREGISTRATION.md": "d95222cbe29e11b86fd7eddca96bd8101aaf47f40ab785fbb6820aebf2bea5cc",
+      "experiments/correlon_zero/adversary.py": "5c1cc33498cc9a760c6cffec9ef0b5b0e567ec4364ba4e5d6cfa1a799cd144b5",
+      "experiments/correlon_zero/analysis.py": "dd49ec823ccc5543544a726057e2e9ffccd24162e0472148dfac305544608ebb",
+      "experiments/correlon_zero/baselines.py": "ca79885b6788e1bd594c97e923466f208dfba8c7f036ecc17024bf8968987fd0",
+      "experiments/correlon_zero/config.json": "409041e740e3a8758bf8b8fcc72d55e885efe0ec3775bcb52ee0dbf834c58655",
+      "experiments/correlon_zero/generators.py": "0d3570ace3ae55bd965554cb337a320bf26224a3aca77fb485ecb44fb3c57b50",
+      "experiments/correlon_zero/metrics.py": "b384d939439b84d7073076c0ebf4101e4fa3a05b2a295e7f7074f22f1dd49986",
+      "experiments/correlon_zero/run_correlon_zero.py": "daecfe5b87a1de381b5240d2c6251c048f41248f43728e463a3cdae3c0c867e0",
+      "experiments/correlon_zero/transforms.py": "2bd015651a21640b93c399d262a89aac6b0dfff7942d348fefaa532a03bee426",
+      "experiments/correlon_zero/validation.py": "e37eac66d2492849637d46e0aa374a2ac9270935ca6d6b75af01c5b5fdf211d6",
+      "tests/test_correlon_zero_transforms.py": "d44d5c1e0af2e97e55c845207c9912b057a97c18bb344fe93ea47ba247b5708f"
+    },
+    "git": {
+      "branch": "agent/correlon-zero-adversarial-invariance",
+      "commit": "cb07d84bec9232b8ed2bd9aaff873b33318db626"
+    },
+    "protocol": "CORRELON_ZERO_ADVERSARIAL_INVARIANCE_FALSIFICATION_v1.0",
+    "version": "1.0"
+  },
+  "observed_row_counts": {
+    "adversary_rows": 300,
+    "negative_rows": 18000,
+    "seed_rows": 1800,
+    "transform_rows": 81000,
+    "world_rows": 5400
+  },
+  "paired_advantage_mean": -0.9968750090409699,
+  "primary_delta": {
+    "independent_mean_CI95": [
+      -1.0,
+      -0.98625335441221
+    ],
+    "mean": -0.994161593426262,
+    "median": -1.0,
+    "q05": -1.0,
+    "standard_deviation": 0.050738599972668504
+  },
+  "seed_aggregate_max_error": 9.8879238130678e-17,
+  "strongest_baseline": "pca_rank1_explained_variance",
+  "validator": "independent_correlon_zero_validator_v1.0"
+}

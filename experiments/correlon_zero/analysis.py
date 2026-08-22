@@ -334,12 +334,46 @@ def summarize_confirmatory(
     fpr_frame = pd.DataFrame(fpr)
     representation = transform[
         (transform.metric == CORRELON)
-        & (transform.transform.isin(["P1_node_permutation", "P4_orthogonal_basis_rotation"]))
+        & (transform["transform"].isin(["P1_node_permutation", "P4_orthogonal_basis_rotation"]))
     ].copy()
     representation["failed"] = representation.retention < float(config["thresholds"]["representation_retention"])
     representation_rates = {
         name: float(group.failed.mean()) for name, group in representation.groupby("transform")
     }
+    representation_diagnostics: dict[str, Any] = {}
+    for name, group in representation.groupby("transform"):
+        base = group.base_score.to_numpy(dtype=float)
+        transformed_score = group.transformed_score.to_numpy(dtype=float)
+        nonzero = base > float(config["metric"]["retention_epsilon"])
+        nonzero_retention = group.loc[nonzero, "retention"].to_numpy(dtype=float)
+        maximum_difference = float(np.max(np.abs(base - transformed_score)))
+        representation_diagnostics[name] = {
+            "n": int(len(group)),
+            "base_zero_count": int(np.sum(~nonzero)),
+            "base_zero_rate": float(np.mean(~nonzero)),
+            "maximum_absolute_score_difference": maximum_difference,
+            "nonzero_score_mean_retention": (
+                float(np.mean(nonzero_retention)) if len(nonzero_retention) else None
+            ),
+            "nonzero_score_minimum_retention": (
+                float(np.min(nonzero_retention)) if len(nonzero_retention) else None
+            ),
+            "interpretation": (
+                "formal failures are zero-to-zero floor cases"
+                if maximum_difference <= 1e-12
+                else "score changed under transform"
+            ),
+        }
+    unique_representation_bases = representation.drop_duplicates(
+        subset=["seed", "target_class", "base_score"]
+    ).base_score.to_numpy(dtype=float)
+    target_base_zero = unique_representation_bases <= float(config["metric"]["retention_epsilon"])
+    any_representation_score_change = bool(
+        any(
+            record["maximum_absolute_score_difference"] > 1e-12
+            for record in representation_diagnostics.values()
+        )
+    )
     max_representation_failure = max(representation_rates.values())
     correlon_fpr = fpr_frame[fpr_frame.metric == CORRELON]
     common_fpr = float(
@@ -349,6 +383,11 @@ def summarize_confirmatory(
     matched_max_fpr = float(
         correlon_fpr[correlon_fpr.negative_class.isin(matched_classes)].false_positive_rate.max()
     )
+    frozen_manifest_path = _result_path(config, "correlon_zero_implementation_manifest.json")
+    if not frozen_manifest_path.exists():
+        raise FileNotFoundError("pre-confirmatory implementation manifest is missing")
+    with frozen_manifest_path.open("r", encoding="utf-8") as handle:
+        frozen_manifest = json.load(handle)
     summary = {
         "protocol": config["protocol"],
         "version": config["version"],
@@ -370,6 +409,19 @@ def summarize_confirmatory(
             "failure_rates": representation_rates,
             "maximum_failure_rate": float(max_representation_failure),
             "retention_threshold": float(config["thresholds"]["representation_retention"]),
+            "score_equality_diagnostics": representation_diagnostics,
+            "unique_target_world_count": int(len(unique_representation_bases)),
+            "target_base_zero_count": int(np.sum(target_base_zero)),
+            "target_base_zero_rate": float(np.mean(target_base_zero)),
+            "any_absolute_score_change": any_representation_score_change,
+            "formal_rule_caveat": "The preregistered retention maps score 0 transformed to score 0 onto retention 0. P1/P4 formal failures must therefore be separated from absolute score change.",
+            "empirical_interpretation": (
+                "P1 and P4 preserved the absolute Correlon v1 score to within 1e-12 in every target-world case; "
+                "the formal representation flag is entirely induced by the frozen zero-to-zero retention convention. "
+                "The underlying empirical defect is target-score floor/sensitivity failure, not observed coordinate dependence."
+                if not any_representation_score_change
+                else "At least one P1/P4 case changed the absolute Correlon v1 score."
+            ),
         },
         "pre_adversary_failure_flags": {
             "representation_dependence": bool(
@@ -383,9 +435,33 @@ def summarize_confirmatory(
                 >= metric_summary[CORRELON]["Delta"]["mean"]
             ),
         },
+        "scientific_freeze_manifest": frozen_manifest,
         "implementation_manifest": implementation_manifest(config),
+        "nonsemantic_amendments": [
+            {
+                "file": "experiments/correlon_zero/analysis.py",
+                "reason": "replace pandas attribute access transform.transform with transform['transform'] after all 200 raw seeds were saved",
+                "scientific_effect": "none; no score, seed, threshold, generator, transformation, baseline, or raw CSV changed",
+            },
+            {
+                "file": "experiments/correlon_zero/analysis.py",
+                "reason": "add explicit zero-to-zero score-floor diagnostics and repair overlapping figure/report labels during artifact QA",
+                "scientific_effect": "none; formal decision precedence and every frozen scientific value remain unchanged",
+            },
+        ],
         "decision": {"status": "PENDING_ADVERSARIAL", "primary_label": None},
     }
+    return summary
+
+
+def aggregate_confirmatory_from_raw(config: dict[str, Any]) -> dict[str, Any]:
+    transform = pd.read_csv(_result_path(config, "correlon_zero_transform_results.csv"))
+    world = pd.read_csv(_result_path(config, "correlon_zero_world_results.csv"))
+    negative = pd.read_csv(_result_path(config, "correlon_zero_negative_scores.csv"))
+    seed_results = aggregate_seed_results(world, config)
+    seed_results.to_csv(_result_path(config, "correlon_zero_seed_results.csv"), index=False)
+    summary = summarize_confirmatory(transform, world, negative, seed_results, config)
+    write_json(_result_path(config, "correlon_zero_summary.json"), summary)
     return summary
 
 
@@ -412,14 +488,7 @@ def run_confirmatory(config: dict[str, Any]) -> dict[str, Any]:
                 "correlon_zero",
             )
             print(f"confirmatory {position}/{count} checkpoint saved", flush=True)
-    transform = pd.DataFrame(transform_rows)
-    world = pd.DataFrame(world_rows)
-    negative = pd.DataFrame(negative_rows)
-    seed_results = aggregate_seed_results(world, config)
-    seed_results.to_csv(_result_path(config, "correlon_zero_seed_results.csv"), index=False)
-    summary = summarize_confirmatory(transform, world, negative, seed_results, config)
-    write_json(_result_path(config, "correlon_zero_summary.json"), summary)
-    return summary
+    return aggregate_confirmatory_from_raw(config)
 
 
 def _decision_from_summary(summary: dict[str, Any], config: dict[str, Any]) -> dict[str, Any]:
@@ -491,6 +560,56 @@ def run_adversarial_and_finalize(config: dict[str, Any]) -> dict[str, Any]:
     return summary
 
 
+def finalize_from_existing_adversary(config: dict[str, Any]) -> dict[str, Any]:
+    summary_path = _result_path(config, "correlon_zero_summary.json")
+    cases_path = _result_path(config, "correlon_zero_adversarial_cases.csv")
+    if not summary_path.exists() or not cases_path.exists():
+        raise FileNotFoundError("confirmatory summary and existing adversarial cases are required")
+    with summary_path.open("r", encoding="utf-8") as handle:
+        summary = json.load(handle)
+    cases = pd.read_csv(cases_path)
+    if len(cases) != int(config["adversary"]["trials"]):
+        raise AssertionError("existing adversarial case count does not match the frozen trial count")
+    if cases.direct_edge.astype(bool).any():
+        raise AssertionError("existing adversarial cases contain a forbidden direct edge")
+    best = cases.loc[cases.correlon_score.idxmax()]
+    parameter_names = [
+        "latent_rank",
+        "rho",
+        "frequency",
+        "strength",
+        "noise",
+        "drift",
+        "x_delay",
+        "y_delay",
+        "sample_length",
+    ]
+    best_parameters = {
+        name: int(best[name]) if name in {"latent_rank", "x_delay", "y_delay", "sample_length"} else float(best[name])
+        for name in parameter_names
+    }
+    crossing_count = int(cases.crosses_threshold.astype(bool).sum())
+    adversarial = {
+        "trials": int(len(cases)),
+        "threshold": float(config["thresholds"]["positive_thresholds"][CORRELON]),
+        "maximum_score": float(best.correlon_score),
+        "crossing_count": crossing_count,
+        "crossing_rate": float(crossing_count / len(cases)),
+        "formal_repeated_crossing": bool(
+            crossing_count >= int(config["thresholds"]["adversarial_crossing_count"])
+        ),
+        "best_trial": int(best.trial),
+        "best_parameters": best_parameters,
+        "direct_edge_absent_by_construction": True,
+        "reused_existing_frozen_search_output": True,
+    }
+    summary["stage"] = "confirmatory_and_adversarial_complete"
+    summary["adversarial_audit"] = adversarial
+    summary["decision"] = _decision_from_summary(summary, config)
+    write_json(summary_path, summary)
+    return summary
+
+
 def _heatmap(
     frame: pd.DataFrame,
     transforms: list[str],
@@ -502,19 +621,21 @@ def _heatmap(
     pivot = frame.pivot(index="metric", columns="transform", values="retention").reindex(
         index=metrics, columns=transforms
     )
-    fig, ax = plt.subplots(figsize=(12, 6.2))
+    fig, ax = plt.subplots(figsize=(12.4, 6.6))
     image = ax.imshow(pivot.to_numpy(), vmin=0.0, vmax=1.0, cmap="Blues", aspect="auto")
-    ax.set_xticks(np.arange(len(transforms)), [name.split("_", 1)[0] for name in transforms])
-    ax.set_yticks(np.arange(len(metrics)), metrics)
-    ax.set_title(title, loc="left", color=INK, fontsize=14, fontweight="bold")
-    ax.text(0.0, 1.01, subtitle, transform=ax.transAxes, color="#596579", fontsize=9, va="bottom")
+    ax.set_xticks(np.arange(len(transforms)))
+    ax.set_xticklabels([name.split("_", 1)[0] for name in transforms])
+    ax.set_yticks(np.arange(len(metrics)))
+    ax.set_yticklabels(metrics)
+    fig.suptitle(title, x=0.24, y=0.975, ha="left", color=INK, fontsize=14, fontweight="bold")
+    fig.text(0.24, 0.925, subtitle, ha="left", color="#596579", fontsize=9)
     for row in range(len(metrics)):
         for column in range(len(transforms)):
             value = pivot.iloc[row, column]
             ax.text(column, row, f"{value:.2f}", ha="center", va="center", color="white" if value > 0.55 else INK, fontsize=8)
     colorbar = fig.colorbar(image, ax=ax, fraction=0.025, pad=0.02)
     colorbar.set_label("mean directional retention")
-    fig.tight_layout()
+    fig.subplots_adjust(left=0.24, right=0.91, top=0.84, bottom=0.12)
     fig.savefig(path, dpi=200, bbox_inches="tight", facecolor="white")
     plt.close(fig)
 
@@ -565,7 +686,7 @@ def make_figures(config: dict[str, Any]) -> list[str]:
         config["preserve_transformations"],
         metrics,
         "Preservation retention by transformation",
-        "Confirmatory 200 seeds × 3 target classes; values are directional score retention",
+        "200 seeds × 3 targets; frozen retention maps an unchanged zero score (0→0) to 0",
         preservation_path,
     )
     destruction_path = _figure_path(config, "correlon_zero_destroy_residual_by_transform.png")
@@ -686,13 +807,34 @@ def make_figures(config: dict[str, Any]) -> list[str]:
     null_plane = _null_plane(config, count=10)
     target_plane = world[world.metric == CORRELON]
     plane_path = _figure_path(config, "correlon_zero_preserve_destroy_plane.png")
-    fig, ax = plt.subplots(figsize=(8.2, 7.0))
+    fig, ax = plt.subplots(figsize=(12.8, 7.4))
     for target, group in target_plane.groupby("target_class"):
         ax.scatter(group.P, group.D, s=18, alpha=0.28, label=f"target: {target}")
     centroids = null_plane.groupby("negative_class", as_index=False)[["P", "D"]].mean()
-    ax.scatter(centroids.P, centroids.D, marker="x", s=70, linewidths=2.0, color=ORANGE, label="null class centroids (10-seed descriptive subset)")
-    for row in centroids.itertuples(index=False):
-        ax.annotate(str(row.negative_class), (row.P, row.D), xytext=(4, 3), textcoords="offset points", fontsize=7)
+    centroids = centroids.sort_values("negative_class").reset_index(drop=True)
+    ax.scatter(
+        centroids.P,
+        centroids.D,
+        marker="x",
+        s=70,
+        linewidths=2.0,
+        color=ORANGE,
+        label="null centroids (10-seed descriptive subset)",
+    )
+    label_positions = np.linspace(0.08, 0.92, len(centroids))
+    for index, (row, label_y) in enumerate(
+        zip(centroids.itertuples(index=False), label_positions, strict=True), start=1
+    ):
+        ax.annotate(
+            f"N{index}: {row.negative_class}",
+            xy=(row.P, row.D),
+            xytext=(1.07, label_y),
+            textcoords="data",
+            fontsize=7.5,
+            va="center",
+            annotation_clip=False,
+            arrowprops={"arrowstyle": "-", "color": "#8a94a6", "lw": 0.6},
+        )
     x_grid = np.linspace(0.0, 1.0, 100)
     ax.plot(x_grid, x_grid - float(config["thresholds"]["minimum_delta"]), color=INK, linestyle="--", linewidth=1.0, label="Delta=0.10")
     ax.set_xlim(-0.02, 1.02)
@@ -701,25 +843,30 @@ def make_figures(config: dict[str, Any]) -> list[str]:
     ax.set_ylabel("D: worst destroy residual retention")
     ax.set_title("Preserve-Destroy plane for targets and nulls", loc="left", color=INK, fontsize=14, fontweight="bold")
     ax.grid(color=GRID, linewidth=0.5)
-    ax.legend(frameon=False, fontsize=7, loc="lower right")
-    fig.tight_layout()
+    ax.legend(frameon=False, fontsize=7.5, loc="lower left")
+    fig.subplots_adjust(left=0.08, right=0.64, top=0.90, bottom=0.11)
     fig.savefig(plane_path, dpi=200, bbox_inches="tight", facecolor="white")
     plt.close(fig)
 
-    paths = [
-        preservation_path,
-        destruction_path,
-        delta_path,
-        paired_path,
-        fpr_path,
-        trajectory_path,
-        best_path,
-        plane_path,
+    chart_specs = [
+        (preservation_path, "heatmap", "results/correlon_zero_transform_results.csv"),
+        (destruction_path, "heatmap", "results/correlon_zero_transform_results.csv"),
+        (delta_path, "boxplot", "results/correlon_zero_seed_results.csv"),
+        (paired_path, "scatter", "results/correlon_zero_seed_results.csv"),
+        (fpr_path, "bar", "results/correlon_zero_negative_scores.csv"),
+        (trajectory_path, "line", "results/correlon_zero_adversarial_cases.csv"),
+        (best_path, "time-series and lag", "results/correlon_zero_best_adversarial.npz"),
+        (
+            plane_path,
+            "scatter",
+            "results/correlon_zero_world_results.csv + results/correlon_zero_null_plane.csv",
+        ),
     ]
+    paths = [path for path, _, _ in chart_specs]
     chart_map = pd.DataFrame(
         [
-            {"figure": path.name, "family": "heatmap" if "transform" in path.name else "static", "source": "confirmatory CSV", "qa": "pending visual inspection"}
-            for path in paths
+            {"figure": path.name, "family": family, "source": source, "qa": "pending visual inspection"}
+            for path, family, source in chart_specs
         ]
     )
     chart_map.to_csv(_result_path(config, "correlon_zero_chart_map.csv"), index=False)
@@ -728,6 +875,10 @@ def make_figures(config: dict[str, Any]) -> list[str]:
 
 def _fmt(value: float, digits: int = 4) -> str:
     return f"{float(value):.{digits}f}"
+
+
+def _sci(value: float, digits: int = 3) -> str:
+    return f"{float(value):.{digits}e}"
 
 
 def _markdown_table(headers: list[str], rows: list[list[Any]]) -> str:
@@ -746,8 +897,11 @@ def _next_experiment(primary_label: str) -> str:
         )
     if primary_label == "FALSIFIED_REPRESENTATION_DEPENDENCE":
         return (
-            "Isolate the single failing invertible representation transform, derive the exact equivariance condition, and test a new "
-            "operator on fresh generators and fresh seeds. The present v1 remains rejected."
+            "Preregister Correlon Zero v2 with two separate gates before using any preserve/destroy ratio: (1) a target-sensitivity "
+            "gate that rejects a candidate when its untransformed target score is at the floor, and (2) an explicit zero-to-zero "
+            "equivalence rule for invariance. Then use fresh target seeds and hold out the present common-driver, matched-low-rank, "
+            "and adversarial-null parameter regions until final evaluation. The present v1 remains rejected and these seeds may not "
+            "be used to tune v2."
         )
     if primary_label == "FALSIFIED_MATCHED_NULL":
         return (
@@ -783,6 +937,12 @@ def write_reports(config: dict[str, Any], figure_paths: list[str]) -> list[str]:
     corr_stats = summary["metric_summary"][CORRELON]
     baseline = summary["baseline_comparison"]
     advantage = baseline["paired_advantage"]
+    representation = summary["representation_audit"]
+    representation_diagnostics = representation["score_equality_diagnostics"]
+    representation_max_difference = max(
+        record["maximum_absolute_score_difference"]
+        for record in representation_diagnostics.values()
+    )
     fpr_frame = pd.DataFrame(summary["false_positive_audit"])
     corr_fpr = fpr_frame[fpr_frame.metric == CORRELON].sort_values("false_positive_rate", ascending=False)
     worst_null = corr_fpr.iloc[0]
@@ -832,6 +992,33 @@ def write_reports(config: dict[str, Any], figure_paths: list[str]) -> list[str]:
         [metric, _fmt(value), _fmt(corr_stats["Delta"]["mean"] - value)]
         for metric, value in sorted(baseline["baseline_mean_deltas"].items(), key=lambda item: item[1], reverse=True)
     ]
+    metric_spec_rows = [
+        ["operator", "windowed whitened cross-covariance SVD Q=Cxx^(-1/2) Cxy Cyy^(-1/2)"],
+        ["preprocessing", "per-window centering; channel-normalized synthetic worlds; no target-specific tuning"],
+        ["windowing", "window=140; step=40; max_lag=3; epsilon=1e-5"],
+        ["matched null", "6 deterministic circular shifts of Y sampled in [T/4, 3T/4)"],
+        ["components", "T_iso=gap excess; T_floor=10th-percentile continuity excess"],
+        ["primary scalar", "sqrt(clip(T_iso,0,1) * clip(T_floor,0,1))"],
+        ["retention", "clip(transformed / max(original,1e-12),0,1)"],
+        ["seed aggregation", "P=min over targets and P1-P7; D=max over targets and D1-D8; Delta=P-D"],
+        ["positive threshold", _fmt(summary["positive_thresholds"][CORRELON], 8)],
+        ["scientific freeze", f"commit cb07d84; SHA-256 {summary['scientific_freeze_manifest']['combined_sha256']}"],
+    ]
+    generator_rows = [
+        ["persistent_shared_mode", "target", "fixed bidirectional rank-1 cross-lag, coefficient 0.28"],
+        ["direct_coupling_SCM", "target", "fixed nonlinear X→Y edge at delay 2, coefficient 0.65"],
+        ["history_dependent_relational_mode", "target", "fixed X-history→Y edge with memory coefficient 0.92"],
+        ["independent_noise", "negative", "independent AR(1) spaces"],
+        ["common_driver", "negative", "latent AR(1) common cause; no X↔Y edge"],
+        ["matched_low_rank", "negative", "iid rank-1 common factor; no directed edge"],
+        ["matched_spectrum", "negative", "independently phase-randomized target spectra"],
+        ["matched_autocorrelation", "negative", "independently simulated per-space VAR(1) models"],
+        ["switching_mode", "negative", "coupling orientation switches halfway; no full-record identity"],
+        ["transient_mode", "negative", "coupling active only in middle third"],
+        ["nonstationary_drift", "negative", "shared deterministic drift plus independent residuals"],
+        ["finite_sample_spurious", "negative", "maximum v1 score among 8 independent AR(0.97) draws"],
+        ["mixture_without_relational_mechanism", "negative", "three changing common-factor blocks; no directed edge"],
+    ]
     adversarial_summary = summary["adversarial_audit"]
     next_experiment = _next_experiment(primary)
     result_markdown = f"""# Correlon Zero — Adversarial Invariance Falsification Results
@@ -842,11 +1029,15 @@ def write_reports(config: dict[str, Any], figure_paths: list[str]) -> list[str]:
 
 The frozen v1 observable was tested without post-confirmatory repair. Its mean preserve-destroy separation was `{_fmt(corr_stats['Delta']['mean'])}` with 95% bootstrap CI `[{_fmt(corr_stats['Delta']['mean_CI95'][0])}, {_fmt(corr_stats['Delta']['mean_CI95'][1])}]`; the 5th percentile was `{_fmt(corr_stats['Delta']['q05'])}`. The strongest named false-positive class was `{worst_null.negative_class}` with FPR `{_fmt(worst_null.false_positive_rate, 3)}` against the frozen positive threshold.
 
+The primary label follows the preregistered decision precedence, but its wording needs a material caveat: the maximum P1/P4 absolute score change was `{_sci(representation_max_difference)}` across all 600 target-world cases, below the `1e-12` numerical-equivalence tolerance. The formal P1/P4 failure rate arose because `{representation['target_base_zero_count']}` / `{representation['unique_target_world_count']}` untransformed target scores were at zero and the frozen ratio maps `0→0` to retention `0`. The empirical defect is therefore a target-score floor/sensitivity failure, not observed permutation or basis dependence.
+
 This verdict concerns only the frozen operational definition in the tested synthetic domain. It makes no ontological or direct-causal claim.
 
 ## 2. Frozen hypothesis
 
 The candidate had to remain stable under P1-P7, disappear under D1-D8, keep its lower-tail `Delta=P-D` positive, hold every negative-class FPR at or below `0.05`, and exceed the per-seed strongest baseline by `0.10`.
+
+{_markdown_table(['generator class', 'role', 'frozen mechanism'], generator_rows)}
 
 ## 3. Operational Correlon definition
 
@@ -856,11 +1047,13 @@ The frozen operator was the Phase-4 whitened cross-covariance SVD. The only prim
 CorrelonZero_v1 = sqrt(clip(T_iso,0,1) * clip(T_floor,0,1))
 ```
 
-`T_iso` is the dominant singular-gap excess over six circular-shift nulls. `T_floor` is the 10th-percentile adjacent-mode continuity excess over the same null family. The source specification is commit `8544101`; the final implementation hash is `{summary['implementation_manifest']['combined_sha256']}`.
+`T_iso` is the dominant singular-gap excess over six circular-shift nulls. `T_floor` is the 10th-percentile adjacent-mode continuity excess over the same null family. The source specification is commit `8544101`; the pre-confirmatory scientific implementation hash is `{summary['scientific_freeze_manifest']['combined_sha256']}`. The postprocessing/report hash after the disclosed non-semantic amendments is `{summary['implementation_manifest']['combined_sha256']}`.
+
+{_markdown_table(['field', 'frozen specification'], metric_spec_rows)}
 
 ## 4. Preserve transformation results
 
-The weakest average preservation condition was `{weakest_preserve.index[0]}` with mean retention `{_fmt(weakest_preserve.iloc[0])}`. P1 and P4 representation-failure rates were `{summary['representation_audit']['failure_rates']}`.
+The weakest average preservation condition was `{weakest_preserve.index[0]}` with mean retention `{_fmt(weakest_preserve.iloc[0])}`. Formal P1 and P4 representation-failure rates were `{representation['failure_rates']}`. These are ratio-rule failures: both transformations reproduced the absolute v1 score within `1e-12` in every target-world case; all failures were numerically unchanged zero scores. This preserves the frozen decision while preventing a false empirical claim of coordinate dependence.
 
 {_markdown_table(['transformation', 'mean retention', 'frozen set'], preserve_rows)}
 
@@ -910,10 +1103,13 @@ The deterministic 300-trial search found maximum null score `{_fmt(adversarial_s
 
 The confirmatory unit was the seed after worst-case aggregation across all three target classes. No favorable seed selection or post-hoc transform removal was used.
 
+Execution integrity: `10/10` transformation tests passed. Independent validation passed all row-count, seed-aggregation, FPR, point-estimate, baseline-selection, paired-advantage, adversarial-recomputation, implementation-hash, finite-value, and image checks. The validated tables contain 81,000 transform rows, 5,400 target-world rows, 18,000 negative-score rows, 1,800 seed-metric rows, and 300 adversarial cases.
+
 ## 11. Supported claims
 
 - The report identifies how the frozen score behaved under every named transformation and null class.
-- Any P1/P4 retention result supports only the corresponding tested representation invariance.
+- P1 node permutation and P4 orthogonal basis rotation preserved the absolute v1 score within `1e-12` in all 600 tested target-world cases.
+- The frozen ratio rule is ill-posed at the score floor for invariance classification: it records unchanged `0→0` cases as retention zero.
 - Any positive target score is descriptive; it does not imply direct causation.
 
 ## 12. Falsified claims
@@ -926,11 +1122,11 @@ The experiment does not support interpreting strong correlation, persistence, lo
 
 ## 13. Remaining ambiguity
 
-The experiment is synthetic and bounded to the frozen generator families, sample sizes, transformations, and scalar readout. A failure identifies an operational non-uniqueness or insensitivity; it does not prove that no future relational invariant can exist. A pass on any secondary condition cannot rescue a failed primary condition.
+The experiment is synthetic and bounded to the frozen generator families, sample sizes, transformations, and scalar readout. The formal primary label is a consequence of the preregistered precedence and zero-floor ratio; it is not evidence that P1 or P4 altered the score. Independent of that label, common-driver and matched-low-rank FPRs, baseline dominance, and 82 adversarial crossings each separately falsify necessary v1 criteria. A failure identifies an operational non-uniqueness or insensitivity; it does not prove that no future relational invariant can exist.
 
 ## 14. Final decision
 
-**{primary}** under the preregistered precedence. The Preserve-Destroy plane below shows target worlds and a clearly marked 10-seed descriptive null subset.
+**{primary}** under the preregistered precedence, with the zero-floor caveat stated above. The Preserve-Destroy plane below shows target worlds and a clearly marked 10-seed descriptive null subset.
 
 ![Preserve-Destroy plane](figures/correlon_zero_preserve_destroy_plane.png)
 
@@ -987,7 +1183,8 @@ An adversarial crossing is a false positive for the frozen operational criterion
         ["Delta q05 > 0", _fmt(corr_stats["Delta"]["q05"]), corr_stats["Delta"]["q05"] > 0.0],
         ["Every negative FPR <= 0.05", _fmt(corr_fpr.false_positive_rate.max(), 3), corr_fpr.false_positive_rate.max() <= 0.05],
         ["Baseline advantage >= 0.10", _fmt(advantage["mean"]), advantage["mean"] >= 0.10],
-        ["P1/P4 failure rate <= 0.05", _fmt(summary["representation_audit"]["maximum_failure_rate"], 3), summary["representation_audit"]["maximum_failure_rate"] <= 0.05],
+        ["P1/P4 frozen-ratio failure rate <= 0.05", _fmt(representation["maximum_failure_rate"], 3), representation["maximum_failure_rate"] <= 0.05],
+        ["P1/P4 maximum absolute score change <= 1e-12", _sci(representation_max_difference), representation_max_difference <= 1e-12],
         ["Adversarial crossings < 3", adversarial_summary["crossing_count"], not adversarial_summary["formal_repeated_crossing"]],
     ]
     final_markdown = f"""# Correlon Zero — Final Decision
@@ -995,6 +1192,8 @@ An adversarial crossing is a false positive for the frozen operational criterion
 ## Decision
 
 **{primary}**
+
+This is the formal label required by the frozen precedence. It must not be read as observed basis dependence: P1/P4 maximum absolute score change was `{_sci(representation_max_difference)}`, below `1e-12`. The formal flag comes entirely from `{representation['target_base_zero_count']}` / `{representation['unique_target_world_count']}` numerically unchanged `0→0` target cases receiving retention zero.
 
 {_markdown_table(['criterion', 'observed', 'pass'], decision_rows)}
 
@@ -1005,10 +1204,11 @@ An adversarial crossing is a false positive for the frozen operational criterion
 - Strongest baseline: `{baseline['strongest_baseline_by_mean_delta']}`
 - Strongest named null by FPR: `{worst_null.negative_class}` (`{_fmt(worst_null.false_positive_rate, 3)}`)
 - Maximum adversarial null score: `{_fmt(adversarial_summary['maximum_score'])}`
+- Empirically strongest independent failures: common-driver FPR `1.000`; matched-low-rank FPR `1.000`; paired baseline advantage `{_fmt(advantage['mean'])}`; adversarial crossings `{adversarial_summary['crossing_count']} / {adversarial_summary['trials']}`
 
 ## Claim boundary
 
-The decision falsifies or supports only `CorrelonZero_v1` as frozen in commit `8544101`. It does not establish an ontological Correlon, direct causation, or a physical discovery.
+The decision falsifies or supports only `CorrelonZero_v1` as preregistered in commit `8544101` and scientifically frozen in commit `cb07d84`. It does not establish an ontological Correlon, direct causation, or a physical discovery.
 
 ## Exact next experiment
 
@@ -1032,12 +1232,16 @@ The decision falsifies or supports only `CorrelonZero_v1` as frozen in commit `8
 
 - metric definition: `sqrt(clip(T_iso,0,1) * clip(T_floor,0,1))`
 - preregistration commit: `8544101`
-- final implementation hash: `{summary['implementation_manifest']['combined_sha256']}`
+- scientific implementation commit: `cb07d84`
+- pre-confirmatory scientific implementation hash: `{summary['scientific_freeze_manifest']['combined_sha256']}`
+- postprocessing implementation hash: `{summary['implementation_manifest']['combined_sha256']}`
 - falsifying experiment: `CORRELON_ZERO_ADVERSARIAL_INVARIANCE_FALSIFICATION_v1.0`
 - seed policy: pilot `0..19`; confirmatory `10000..10199`; adversary `424242`
 - failure criterion: `{primary}` under the frozen precedence
-- result summary: mean Delta `{_fmt(corr_stats['Delta']['mean'])}`; worst named-null FPR `{_fmt(worst_null.false_positive_rate, 3)}`; adversarial crossings `{adversarial_summary['crossing_count']}`
-- reason for rejection: the frozen operational definition failed at least one preregistered necessary condition; no v1 repair was attempted
+- all failure labels: `{summary['decision']['all_failure_labels']}`
+- result summary: mean Delta `{_fmt(corr_stats['Delta']['mean'])}`; common-driver FPR `1.000`; matched-low-rank FPR `1.000`; paired baseline advantage `{_fmt(advantage['mean'])}`; adversarial crossings `{adversarial_summary['crossing_count']}`
+- formal-label caveat: P1/P4 absolute scores matched within `1e-12` (maximum difference `{_sci(representation_max_difference)}`); `{representation['target_base_zero_count']}` / `{representation['unique_target_world_count']}` zero-score targets failed only because the frozen ratio maps `0→0` to `0`
+- reason for rejection: target-score floor/sensitivity failure, common-driver and matched-null false positives, baseline dominance, and repeated adversarial false positives independently violate necessary v1 criteria; no v1 repair was attempted
 
 See `CORRELON_ZERO_RESULTS.md`, `CORRELON_ZERO_ADVERSARIAL_AUDIT.md`, and `CORRELON_ZERO_FINAL_DECISION.md`.
 """

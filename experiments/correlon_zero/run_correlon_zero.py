@@ -8,6 +8,8 @@ from pathlib import Path
 import pytest
 
 from .analysis import (
+    aggregate_confirmatory_from_raw,
+    finalize_from_existing_adversary,
     make_figures,
     run_adversarial_and_finalize,
     run_confirmatory,
@@ -79,7 +81,16 @@ def main() -> None:
     parser.add_argument(
         "--stage",
         required=True,
-        choices=["test", "pilot", "confirmatory", "adversarial", "report", "full"],
+        choices=[
+            "test",
+            "pilot",
+            "confirmatory",
+            "aggregate",
+            "adversarial",
+            "finalize-existing",
+            "report",
+            "full",
+        ],
     )
     args = parser.parse_args()
     config = load_config(Path(args.config))
@@ -91,8 +102,12 @@ def main() -> None:
         run_pilot(config)
     elif args.stage == "confirmatory":
         run_confirmatory(config)
+    elif args.stage == "aggregate":
+        aggregate_confirmatory_from_raw(config)
     elif args.stage == "adversarial":
         run_adversarial_and_finalize(config)
+    elif args.stage == "finalize-existing":
+        finalize_from_existing_adversary(config)
     elif args.stage == "report":
         run_report_stage(config)
     elif args.stage == "full":
