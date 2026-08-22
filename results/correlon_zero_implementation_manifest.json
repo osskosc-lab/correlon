@@ -1,0 +1,22 @@
+{
+  "combined_sha256": "efb4511ff21476614d01ec9449f24b4f3d92deabdd35995ae997cf376503b16c",
+  "files": {
+    "CORRELON_ZERO_PREREGISTRATION.md": "d95222cbe29e11b86fd7eddca96bd8101aaf47f40ab785fbb6820aebf2bea5cc",
+    "experiments/correlon_zero/adversary.py": "5c1cc33498cc9a760c6cffec9ef0b5b0e567ec4364ba4e5d6cfa1a799cd144b5",
+    "experiments/correlon_zero/analysis.py": "ea20db78e4d192a8ef9b0b21acbb3ff762429f0967020e8503c6a8d9022030dd",
+    "experiments/correlon_zero/baselines.py": "ca79885b6788e1bd594c97e923466f208dfba8c7f036ecc17024bf8968987fd0",
+    "experiments/correlon_zero/config.json": "409041e740e3a8758bf8b8fcc72d55e885efe0ec3775bcb52ee0dbf834c58655",
+    "experiments/correlon_zero/generators.py": "0d3570ace3ae55bd965554cb337a320bf26224a3aca77fb485ecb44fb3c57b50",
+    "experiments/correlon_zero/metrics.py": "b384d939439b84d7073076c0ebf4101e4fa3a05b2a295e7f7074f22f1dd49986",
+    "experiments/correlon_zero/run_correlon_zero.py": "a4cc94e81cc0bef0ccc7f7e63f79d5429f4dde632c69a26bdc287f9f7b97a699",
+    "experiments/correlon_zero/transforms.py": "2bd015651a21640b93c399d262a89aac6b0dfff7942d348fefaa532a03bee426",
+    "experiments/correlon_zero/validation.py": "e37eac66d2492849637d46e0aa374a2ac9270935ca6d6b75af01c5b5fdf211d6",
+    "tests/test_correlon_zero_transforms.py": "d44d5c1e0af2e97e55c845207c9912b057a97c18bb344fe93ea47ba247b5708f"
+  },
+  "git": {
+    "branch": "agent/correlon-zero-adversarial-invariance",
+    "commit": "85441016bb013e6b1e38e7e4dd0b46cfed6eb3bb"
+  },
+  "protocol": "CORRELON_ZERO_ADVERSARIAL_INVARIANCE_FALSIFICATION_v1.0",
+  "version": "1.0"
+}

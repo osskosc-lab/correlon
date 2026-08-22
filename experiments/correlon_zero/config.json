@@ -1,0 +1,178 @@
+{
+  "protocol": "CORRELON_ZERO_ADVERSARIAL_INVARIANCE_FALSIFICATION_v1.0",
+  "version": "1.0",
+  "preregistration_commit": "8544101",
+  "preregistration_sha256": "d95222cbe29e11b86fd7eddca96bd8101aaf47f40ab785fbb6820aebf2bea5cc",
+  "continuity_base": "a727f11e95e40d7b0919dc87dd9730bfc16abc69",
+  "phase4_blob": "bf80ad90beecbbcc8c3638e3250e57a2b56eded4",
+  "phase4_sha256": "faa6e602fe507eba37fb902ff191a0bcf348b225766ff4ed676e37438e8fc8cb",
+  "data": {
+    "time_points": 600,
+    "x_dim": 6,
+    "y_dim": 6,
+    "burn_in": 200
+  },
+  "metric": {
+    "window": 140,
+    "step": 40,
+    "epsilon": 1e-5,
+    "max_lag": 3,
+    "matched_null_replicates": 6,
+    "retention_epsilon": 1e-12
+  },
+  "targets": [
+    "persistent_shared_mode",
+    "direct_coupling_SCM",
+    "history_dependent_relational_mode"
+  ],
+  "negative_classes": [
+    "independent_noise",
+    "common_driver",
+    "matched_low_rank",
+    "matched_spectrum",
+    "matched_autocorrelation",
+    "switching_mode",
+    "transient_mode",
+    "nonstationary_drift",
+    "finite_sample_spurious",
+    "mixture_without_relational_mechanism"
+  ],
+  "preserve_transformations": [
+    "P1_node_permutation",
+    "P2_global_scaling",
+    "P3_affine_offset",
+    "P4_orthogonal_basis_rotation",
+    "P5_observation_noise",
+    "P6_time_reparameterization",
+    "P7_coarse_graining"
+  ],
+  "destroy_transformations": [
+    "D1_temporal_shuffle",
+    "D2_phase_randomization",
+    "D3_IAAFT_surrogate",
+    "D4_edge_cutting",
+    "D5_source_swap",
+    "D6_common_driver_replacement",
+    "D7_history_destruction",
+    "D8_block_shuffle"
+  ],
+  "transform_parameters": {
+    "scale_low": 0.5,
+    "scale_high": 2.0,
+    "offset_sd": 2.0,
+    "observation_noise_sd": 0.1,
+    "time_warp_exponent": 1.25,
+    "coarse_grain_factor": 2,
+    "iaaft_iterations": 30,
+    "block_length": 25
+  },
+  "baselines": [
+    "pearson",
+    "mutual_information",
+    "largest_covariance_eigenvalue",
+    "pca_rank1_explained_variance",
+    "spectral_coherence",
+    "autocorrelation_persistence",
+    "linear_CKA",
+    "VAR_ARX_predictive"
+  ],
+  "baseline_parameters": {
+    "coherence_nperseg": 128,
+    "var_lags": 3,
+    "ridge": 0.001,
+    "covariance_regularizer": 1e-6
+  },
+  "seeds": {
+    "pilot_start": 0,
+    "pilot_count": 20,
+    "confirmatory_start": 10000,
+    "confirmatory_count": 200,
+    "bootstrap": 99173,
+    "adversary": 424242
+  },
+  "namespaces": {
+    "persistent_shared_mode": 101,
+    "direct_coupling_SCM": 102,
+    "history_dependent_relational_mode": 103,
+    "independent_noise": 201,
+    "common_driver": 202,
+    "matched_low_rank": 203,
+    "matched_spectrum": 204,
+    "matched_autocorrelation": 205,
+    "switching_mode": 206,
+    "transient_mode": 207,
+    "nonstationary_drift": 208,
+    "finite_sample_spurious": 209,
+    "mixture_without_relational_mechanism": 210,
+    "P1_node_permutation": 301,
+    "P2_global_scaling": 302,
+    "P3_affine_offset": 303,
+    "P4_orthogonal_basis_rotation": 304,
+    "P5_observation_noise": 305,
+    "P6_time_reparameterization": 306,
+    "P7_coarse_graining": 307,
+    "D1_temporal_shuffle": 401,
+    "D2_phase_randomization": 402,
+    "D3_IAAFT_surrogate": 403,
+    "D4_edge_cutting": 404,
+    "D5_source_swap": 405,
+    "D6_common_driver_replacement": 406,
+    "D7_history_destruction": 407,
+    "D8_block_shuffle": 408,
+    "metric_null": 501
+  },
+  "thresholds": {
+    "minimum_delta": 0.1,
+    "minimum_baseline_advantage": 0.1,
+    "maximum_false_positive_rate": 0.05,
+    "representation_retention": 0.9,
+    "maximum_representation_failure_rate": 0.05,
+    "adversarial_crossing_count": 3,
+    "positive_thresholds": {
+      "correlon_v1": 0.05106167951270389,
+      "pearson": 0.0909181011472309,
+      "mutual_information": 0.0245425420479295,
+      "largest_covariance_eigenvalue": 1.4929874149291256,
+      "pca_rank1_explained_variance": 0.12441561791076046,
+      "spectral_coherence": 0.17054676045893405,
+      "autocorrelation_persistence": 0.7057475213919987,
+      "linear_CKA": 0.04876170431019372,
+      "VAR_ARX_predictive": 0.0342748237716478
+    }
+  },
+  "pilot_freeze": {
+    "source": "results/correlon_zero_pilot_summary.json",
+    "seed_start": 0,
+    "seed_count": 20,
+    "calibration_class": "independent_noise",
+    "quantile": 0.95,
+    "quantile_method": "linear",
+    "confirmatory_data_opened": false
+  },
+  "statistics": {
+    "bootstrap_resamples": 5000,
+    "lower_tail_quantile": 0.05,
+    "quantile_method": "linear"
+  },
+  "adversary": {
+    "trials": 300,
+    "latent_ranks": [1, 2, 3],
+    "rho_low": 0.0,
+    "rho_high": 0.995,
+    "frequency_low": 0.0,
+    "frequency_high": 0.45,
+    "strength_low": 0.2,
+    "strength_high": 3.0,
+    "noise_low": 0.1,
+    "noise_high": 1.5,
+    "drift_low": 0.0,
+    "drift_high": 2.0,
+    "delays": [0, 1, 2, 3, 5, 8],
+    "sample_lengths": [300, 450, 600, 750]
+  },
+  "outputs": {
+    "results_dir": "results",
+    "figures_dir": "figures",
+    "cemetery_dir": "cemetery"
+  }
+}

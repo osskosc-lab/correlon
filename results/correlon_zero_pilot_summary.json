@@ -1,0 +1,54 @@
+{
+  "calibration_class": "independent_noise",
+  "confirmatory_data_opened": false,
+  "implementation_manifest": {
+    "combined_sha256": "e042dd3cc702a9f4529e30736473f0418c902df2e1771cdb54b15aa742ce7e4f",
+    "files": {
+      "CORRELON_ZERO_PREREGISTRATION.md": "d95222cbe29e11b86fd7eddca96bd8101aaf47f40ab785fbb6820aebf2bea5cc",
+      "experiments/correlon_zero/adversary.py": "5c1cc33498cc9a760c6cffec9ef0b5b0e567ec4364ba4e5d6cfa1a799cd144b5",
+      "experiments/correlon_zero/analysis.py": "ea20db78e4d192a8ef9b0b21acbb3ff762429f0967020e8503c6a8d9022030dd",
+      "experiments/correlon_zero/baselines.py": "ca79885b6788e1bd594c97e923466f208dfba8c7f036ecc17024bf8968987fd0",
+      "experiments/correlon_zero/config.json": "caec1edbc08e1ebae18b911847527e8be738ed8fd700a0f8cc0e93adf91c655c",
+      "experiments/correlon_zero/generators.py": "0d3570ace3ae55bd965554cb337a320bf26224a3aca77fb485ecb44fb3c57b50",
+      "experiments/correlon_zero/metrics.py": "b384d939439b84d7073076c0ebf4101e4fa3a05b2a295e7f7074f22f1dd49986",
+      "experiments/correlon_zero/run_correlon_zero.py": "a9443097c6998ae328613175495ea81841290aebf822e81545f078f5b2fb03e4",
+      "experiments/correlon_zero/transforms.py": "2bd015651a21640b93c399d262a89aac6b0dfff7942d348fefaa532a03bee426",
+      "experiments/correlon_zero/validation.py": "e37eac66d2492849637d46e0aa374a2ac9270935ca6d6b75af01c5b5fdf211d6",
+      "tests/test_correlon_zero_transforms.py": "153485c5374969ffaa7988d2f471829903286b63d0095215bd88bc388c189deb"
+    },
+    "git": {
+      "branch": "agent/correlon-zero-adversarial-invariance",
+      "commit": "85441016bb013e6b1e38e7e4dd0b46cfed6eb3bb"
+    },
+    "protocol": "CORRELON_ZERO_ADVERSARIAL_INVARIANCE_FALSIFICATION_v1.0",
+    "version": "1.0"
+  },
+  "positive_thresholds": {
+    "VAR_ARX_predictive": 0.0342748237716478,
+    "autocorrelation_persistence": 0.7057475213919987,
+    "correlon_v1": 0.05106167951270389,
+    "largest_covariance_eigenvalue": 1.4929874149291256,
+    "linear_CKA": 0.04876170431019372,
+    "mutual_information": 0.0245425420479295,
+    "pca_rank1_explained_variance": 0.12441561791076046,
+    "pearson": 0.0909181011472309,
+    "spectral_coherence": 0.17054676045893405
+  },
+  "protocol": "CORRELON_ZERO_ADVERSARIAL_INVARIANCE_FALSIFICATION_v1.0",
+  "quantile": 0.95,
+  "quantile_method": "linear",
+  "seed_count": 20,
+  "seed_start": 0,
+  "stage": "pilot",
+  "target_world_delta_means": {
+    "VAR_ARX_predictive": 0.10182818139220128,
+    "autocorrelation_persistence": -0.16884519245799007,
+    "correlon_v1": -0.6376185982267445,
+    "largest_covariance_eigenvalue": -0.06095278741341283,
+    "linear_CKA": -0.09106627085295625,
+    "mutual_information": 0.19102539139914207,
+    "pca_rank1_explained_variance": 0.04061373362210567,
+    "pearson": 0.06346270610670839,
+    "spectral_coherence": -0.1583683412331265
+  }
+}
