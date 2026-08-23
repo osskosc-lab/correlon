@@ -1,0 +1,71 @@
+name: Timeless T8 Pipeline CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: timeless-t8-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONHASHSEED: "0"
+      MPLBACKEND: Agg
+      TIMELESS_T8_RESULTS_DIR: ${{ runner.temp }}/timeless-t8/results
+      TIMELESS_T8_FIGURES_DIR: ${{ runner.temp }}/timeless-t8/figures
+      TIMELESS_T8_REPORT_PATH: ${{ runner.temp }}/timeless-t8/TIMELESS_CORRELATOR_T8_RESULTS.md
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then python -m pip install -r requirements.txt; fi
+
+      - name: Run unit tests
+        run: python -m unittest experiments/test_timeless_T8.py -v
+
+      - name: Run development stage
+        run: python experiments/Timeless_T8_run_all.py --stage development
+
+      - name: Run validation stage
+        run: python experiments/Timeless_T8_run_all.py --stage validation
+
+      - name: Run confirmation stage
+        run: python experiments/Timeless_T8_run_all.py --stage confirmation
+
+      - name: Run holdout evaluation
+        run: python experiments/Timeless_T8_holdout.py
+
+      - name: Generate report
+        run: python experiments/Timeless_T8_make_report.py
+
+      - name: Upload experiment artifacts and reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: timeless-t8-results
+          path: |
+            ${{ runner.temp }}/timeless-t8/results/
+            ${{ runner.temp }}/timeless-t8/figures/
+            ${{ runner.temp }}/timeless-t8/TIMELESS_CORRELATOR_T8_RESULTS.md
+          if-no-files-found: warn
+          retention-days: 14

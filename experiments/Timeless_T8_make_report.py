@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import os
+from pathlib import Path
+
 import matplotlib
 
 matplotlib.use("Agg")
@@ -12,6 +15,11 @@ import pandas as pd
 from Timeless_T8_generators import LONG_MEMORY_TARGETS, kernel
 from Timeless_T8_nonmarkov_baselines import CANDIDATE_MODEL
 from timeless_t8_common import FIGURES, RESULTS, ROOT, read_json
+
+
+REPORT_PATH = Path(
+    os.environ.get("TIMELESS_T8_REPORT_PATH", ROOT / "TIMELESS_CORRELATOR_T8_RESULTS.md")
+).resolve()
 
 
 REQUIRED_FIGURES = (
@@ -282,7 +290,8 @@ If continued, preregister a real-data external-validity study with acquisition-l
 controls and independently chosen long-memory domains. Do not introduce a new operator
 unless it beats the strongest domain-standard models on untouched data.
 """
-    (ROOT / "TIMELESS_CORRELATOR_T8_RESULTS.md").write_text(text, encoding="utf-8")
+    REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    REPORT_PATH.write_text(text, encoding="utf-8")
 
 
 if __name__ == "__main__":
@@ -292,4 +301,3 @@ if __name__ == "__main__":
     if missing:
         raise RuntimeError(f"missing T8 figures: {missing}")
     print("T8 report and figures complete")
-

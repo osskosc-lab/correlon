@@ -4,13 +4,18 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from pathlib import Path
 from typing import Iterable
 
 import numpy as np
 import pandas as pd
 
-from timeless_common import FIGURES, RESULTS, ROOT, bootstrap_ci, ensure_output_dirs, git_context
+from timeless_common import ROOT, bootstrap_ci, git_context
+
+
+RESULTS = Path(os.environ.get("TIMELESS_T8_RESULTS_DIR", ROOT / "results")).resolve()
+FIGURES = Path(os.environ.get("TIMELESS_T8_FIGURES_DIR", ROOT / "figures")).resolve()
 
 
 HISTORY_LENGTHS = (16, 32, 64, 128, 256, 512, 1024)
@@ -50,7 +55,8 @@ def canonical_hash(payload: dict) -> str:
 
 
 def replace_stage_rows(path: Path, rows: list[dict], stage: str) -> pd.DataFrame:
-    ensure_output_dirs()
+    RESULTS.mkdir(parents=True, exist_ok=True)
+    FIGURES.mkdir(parents=True, exist_ok=True)
     incoming = pd.DataFrame(rows)
     if incoming.empty:
         raise ValueError(f"no rows for {path}")
