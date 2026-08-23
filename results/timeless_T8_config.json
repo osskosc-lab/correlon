@@ -1,0 +1,100 @@
+{
+  "history_lengths": [
+    16,
+    32,
+    64,
+    128,
+    256,
+    512,
+    1024
+  ],
+  "holdout_definitions": [
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "H5",
+    "H6",
+    "H7",
+    "H8"
+  ],
+  "lag_grid": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256
+  ],
+  "model_families": {
+    "candidate": "full_history_kernel_candidate",
+    "finite": [
+      "ARX",
+      "VAR",
+      "FIR",
+      "linear_state_space",
+      "Kalman_latent_state"
+    ],
+    "standard_nonmarkov": [
+      "ARFIMA_fractional_difference",
+      "generalized_Langevin_memory_kernel",
+      "Volterra_series",
+      "predictive_state_representation",
+      "reservoir_computing"
+    ]
+  },
+  "program": "Timeless Correlator T8",
+  "seeds": {
+    "bootstrap": 908172,
+    "confirmation": [
+      40000,
+      40299
+    ],
+    "development": [
+      30000,
+      30029
+    ],
+    "validation": [
+      31000,
+      31049
+    ]
+  },
+  "selected_baselines": {
+    "finite_markov": "linear_state_space",
+    "standard_nonmarkov": "reservoir_computing"
+  },
+  "source_commit": "f1e0227d44ef50e489c6a32cfc0941dbf5f6925e",
+  "state_dimension_grid": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128
+  ],
+  "thresholds": {
+    "constant_delta_AIC": 10.0,
+    "hard_null_FPR": 0.05,
+    "history_control_median": 0.03,
+    "history_target_CI95_low": 0.1,
+    "history_target_median": 0.15,
+    "novel_residual_relative_margin": 0.1,
+    "prediction_NMSE": 0.05,
+    "scaling_final_to_initial_ratio": 4.0
+  },
+  "verdict_priority": [
+    "INCONCLUSIVE_IMPLEMENTATION",
+    "PSEUDOMEMORY_FALSE_POSITIVE",
+    "INCONCLUSIVE_IDENTIFIABILITY",
+    "FINITE_MARKOV_COMPRESSION_SUFFICIENT",
+    "STANDARD_NONMARKOV_THEORY_SUFFICIENT",
+    "FINITE_MARKOV_COMPRESSION_INEFFICIENT",
+    "NONMARKOV_RESIDUAL_DETECTED"
+  ],
+  "version": "1.0"
+}

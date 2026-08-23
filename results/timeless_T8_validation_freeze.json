@@ -1,0 +1,282 @@
+{
+  "config_SHA256": "2e9aa45f6b9b374823133e163340b284508e6a385af8cb5bf086f6fa004b86d1",
+  "git": {
+    "branch": "agent/timeless-correlator-t8-nonmarkov-memory",
+    "commit": "22bf3db38d53f1b41b77ed1211f559a0dff5b396"
+  },
+  "ground_truth": {
+    "checks": {
+      "drift_explicit_powerlaw_kernel_absent": true,
+      "finite_AR_true_order": true,
+      "finite_SSM_true_dimension": true,
+      "fractional_long_memory": true,
+      "hard_null_target_mechanism_absent": true,
+      "powerlaw_tail": true,
+      "sum_exponential_finite_augmentation": true
+    },
+    "fractional_fitted_slope": -0.6499243598950561,
+    "powerlaw_fitted_slope": -0.4999999999999998,
+    "status": "PASS"
+  },
+  "history": {
+    "control_Delta_H_R": {
+      "5th_percentile": 0.0,
+      "CI95": [
+        0.0,
+        0.0
+      ],
+      "failure_count": 0,
+      "mean": 0.0,
+      "median": 0.0,
+      "n": 150,
+      "standard_deviation": 0.0
+    },
+    "current_state_match_error_max": 0.0,
+    "pass": true,
+    "target_Delta_H_R": {
+      "5th_percentile": 0.36793625874578323,
+      "CI95": [
+        1.2290494392546114,
+        1.4726016382383664
+      ],
+      "failure_count": 0,
+      "mean": 1.3543470385967857,
+      "median": 1.4800395583296764,
+      "n": 150,
+      "standard_deviation": 0.7615491818247385
+    },
+    "verdict": "HISTORY_EFFECT_SUPPORTED"
+  },
+  "positive_control_status": "PASS",
+  "scaling": {
+    "at_least_one_inefficient_target": true,
+    "families": {
+      "L1_power_law_kernel": {
+        "compression_inefficiency_gate": true,
+        "final_to_initial_ratio": 52.857142857142854,
+        "median_d_star_by_L": {
+          "1024": 1.0,
+          "128": 1.0,
+          "16": 1.0,
+          "256": 1.0,
+          "32": 1.0,
+          "512": 1.0,
+          "64": 1.0
+        },
+        "median_p_required_by_L": {
+          "1024": 740.0,
+          "128": 103.0,
+          "16": 14.0,
+          "256": 198.0,
+          "32": 28.0,
+          "512": 383.0,
+          "64": 53.0
+        },
+        "nondecreasing": true,
+        "scaling_models": {
+          "AIC": {
+            "constant": 78.98577253730413,
+            "linear": 25.412065234955417,
+            "logarithmic": 70.21048238490633,
+            "power_law": -3.24195184728909
+          },
+          "best_increasing_model": "power_law",
+          "constant_delta_AIC": 82.22772438459322
+        }
+      },
+      "L2_fractional_dynamics": {
+        "compression_inefficiency_gate": false,
+        "final_to_initial_ratio": 3.25,
+        "median_d_star_by_L": {
+          "1024": 2.0,
+          "128": 2.0,
+          "16": 1.5,
+          "256": 2.0,
+          "32": 2.0,
+          "512": 2.0,
+          "64": 2.0
+        },
+        "median_p_required_by_L": {
+          "1024": 13.0,
+          "128": 9.0,
+          "16": 4.0,
+          "256": 11.0,
+          "32": 6.0,
+          "512": 12.0,
+          "64": 7.0
+        },
+        "nondecreasing": true,
+        "scaling_models": {
+          "AIC": {
+            "constant": 17.79653598464914,
+            "linear": 11.472151728977103,
+            "logarithmic": -10.998343103109573,
+            "power_law": 1.5956217397544332
+          },
+          "best_increasing_model": "logarithmic",
+          "constant_delta_AIC": 28.794879087758712
+        }
+      },
+      "L3_generalized_Langevin": {
+        "compression_inefficiency_gate": true,
+        "final_to_initial_ratio": 64.75,
+        "median_d_star_by_L": {
+          "1024": 2.0,
+          "128": 2.0,
+          "16": 1.0,
+          "256": 2.0,
+          "32": 2.0,
+          "512": 2.0,
+          "64": 2.0
+        },
+        "median_p_required_by_L": {
+          "1024": 518.0,
+          "128": 86.0,
+          "16": 8.0,
+          "256": 152.0,
+          "32": 28.0,
+          "512": 287.0,
+          "64": 53.0
+        },
+        "nondecreasing": true,
+        "scaling_models": {
+          "AIC": {
+            "constant": 73.88348895561641,
+            "linear": 36.41929632728056,
+            "logarithmic": 64.03964722134215,
+            "power_law": 46.76724958461456
+          },
+          "best_increasing_model": "linear",
+          "constant_delta_AIC": 37.46419262833585
+        }
+      },
+      "L4_ARFIMA": {
+        "compression_inefficiency_gate": false,
+        "final_to_initial_ratio": 1.5,
+        "median_d_star_by_L": {
+          "1024": 2.0,
+          "128": 2.0,
+          "16": 1.5,
+          "256": 2.0,
+          "32": 2.0,
+          "512": 2.0,
+          "64": 2.0
+        },
+        "median_p_required_by_L": {
+          "1024": 3.0,
+          "128": 2.0,
+          "16": 2.0,
+          "256": 3.0,
+          "32": 2.0,
+          "512": 3.0,
+          "64": 2.0
+        },
+        "nondecreasing": true,
+        "scaling_models": {
+          "AIC": {
+            "constant": -7.848395538258384,
+            "linear": -12.483901804922812,
+            "logarithmic": -15.552456066097616,
+            "power_law": -15.955803507036222
+          },
+          "best_increasing_model": "power_law",
+          "constant_delta_AIC": 8.107407968777839
+        }
+      },
+      "L5_long_memory_nonlinear": {
+        "compression_inefficiency_gate": true,
+        "final_to_initial_ratio": 55.6,
+        "median_d_star_by_L": {
+          "1024": 32.0,
+          "128": 16.0,
+          "16": 4.0,
+          "256": 16.0,
+          "32": 8.0,
+          "512": 32.0,
+          "64": 8.0
+        },
+        "median_p_required_by_L": {
+          "1024": 834.0,
+          "128": 109.0,
+          "16": 15.0,
+          "256": 215.0,
+          "32": 29.0,
+          "512": 423.0,
+          "64": 56.0
+        },
+        "nondecreasing": true,
+        "scaling_models": {
+          "AIC": {
+            "constant": 80.68404789811342,
+            "linear": 13.538251191992675,
+            "logarithmic": 72.20344957380318,
+            "power_law": 21.75737560908906
+          },
+          "best_increasing_model": "linear",
+          "constant_delta_AIC": 67.14579670612075
+        }
+      },
+      "L6_history_dependent_intervention": {
+        "compression_inefficiency_gate": true,
+        "final_to_initial_ratio": 58.6,
+        "median_d_star_by_L": {
+          "1024": 32.0,
+          "128": 16.0,
+          "16": 4.0,
+          "256": 16.0,
+          "32": 8.0,
+          "512": 32.0,
+          "64": 8.0
+        },
+        "median_p_required_by_L": {
+          "1024": 879.0,
+          "128": 113.0,
+          "16": 15.0,
+          "256": 223.0,
+          "32": 29.0,
+          "512": 442.0,
+          "64": 57.0
+        },
+        "nondecreasing": true,
+        "scaling_models": {
+          "AIC": {
+            "constant": 81.43292162181275,
+            "linear": 2.7122272712553723,
+            "logarithmic": 73.04682378531257,
+            "power_law": 18.819676722805106
+          },
+          "best_increasing_model": "linear",
+          "constant_delta_AIC": 78.72069435055738
+        }
+      }
+    },
+    "positive_control_status": "PASS",
+    "positive_controls": {
+      "M1_AR_finite": true,
+      "M2_linear_SSM": true,
+      "M3_sum_exponential_kernel": true
+    }
+  },
+  "status": "FROZEN",
+  "tournament": {
+    "best_finite_markov_baseline": "linear_state_space",
+    "best_finite_markov_heldout_error": 0.02236331820708014,
+    "best_nonmarkov_baseline": "reservoir_computing",
+    "best_nonmarkov_heldout_error": 0.02673331820708014,
+    "candidate_heldout_error": 0.03678331820708014,
+    "candidate_relative_advantage": {
+      "5th_percentile": -0.38999330062719073,
+      "CI95": [
+        -0.3780298449132944,
+        -0.3749109752471947
+      ],
+      "failure_count": 300,
+      "mean": -0.37647703737622595,
+      "median": -0.381829743668903,
+      "n": 300,
+      "standard_deviation": 0.013916217320512594
+    },
+    "novel_residual_gate": false,
+    "same_budget_comparison": true
+  }
+}
