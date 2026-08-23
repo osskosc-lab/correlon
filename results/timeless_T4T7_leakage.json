@@ -1,0 +1,27 @@
+{
+  "audit_stage": "validation",
+  "interpretation": "Metadata-only adversaries are at chance. Semantic coordinates inferred from operator entries are the preregistered T6 target, not timestamp metadata leakage.",
+  "metadata_adversary": {
+    "binomial_95_percent_interval": [
+      0.18998750130181213,
+      0.31001249869818787
+    ],
+    "chance_accuracy": 0.25,
+    "n_trials": 200,
+    "random_node_label_accuracy": 0.255,
+    "storage_position_accuracy": 0.19
+  },
+  "permutation_invariance": {
+    "max_reconstruction_error": 0.0,
+    "pass": true
+  },
+  "schema_firewall": {
+    "duration_label_present_in_T6_estimator_record": false,
+    "forward_reverse_filename_label_present_in_T7_input": false,
+    "opaque_operator_identifiers_randomized": true,
+    "sample_index_field_present": false,
+    "timestamp_field_present": false,
+    "true_topological_order_present_in_T5_input": false
+  },
+  "status": "PASS"
+}

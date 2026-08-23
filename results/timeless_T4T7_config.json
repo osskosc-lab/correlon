@@ -1,0 +1,104 @@
+{
+  "baselines": {
+    "arrow": [
+      "probability_current",
+      "detailed_balance",
+      "entropy_production"
+    ],
+    "duration": [
+      "matrix_logarithm",
+      "semigroup_fit",
+      "ordinal_embedding"
+    ],
+    "order": [
+      "causal_reachability",
+      "topological_sort",
+      "spectral_seriation"
+    ]
+  },
+  "holdout_definitions": [
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "H5",
+    "H6",
+    "H7"
+  ],
+  "program": "Timeless Correlator T4-T7",
+  "seed_protocol": {
+    "bootstrap": 881122,
+    "confirmation": [
+      20000,
+      20299
+    ],
+    "development": [
+      0,
+      29
+    ],
+    "validation": [
+      1000,
+      1049
+    ]
+  },
+  "source_HEAD_SHA": "a727f11e95e40d7b0919dc87dd9730bfc16abc69",
+  "thresholds": {
+    "T4_population_equal_time_max_difference": 0.0,
+    "T5_cycle_detection_accuracy": 0.95,
+    "T5_false_total_order_rate": 0.05,
+    "T5_median_reachability_F1": 0.9,
+    "T6_alias_operator_difference": 1e-10,
+    "T6_median_rank_accuracy": 0.9,
+    "T6_median_scale_aligned_error": 0.1,
+    "T6_multiclock_1D_residual": 0.2,
+    "T7_asymmetric_AUC": 0.9,
+    "T7_asymmetric_accuracy": 0.9,
+    "T7_symmetric_AUC_interval": [
+      0.45,
+      0.55
+    ]
+  },
+  "verdict_priority": [
+    "CLOCK_LEAKAGE",
+    "INCONCLUSIVE_IMPLEMENTATION",
+    "FULL_EQUAL_TIME_NO_GO",
+    "SCALAR_TIME_MODEL_REJECTED",
+    "DURATION_ALIASING",
+    "GENERATOR_AMBIGUITY",
+    "THERMODYNAMIC_ARROW_SUFFICIENT",
+    "ARROW_REQUIRES_ASYMMETRY",
+    "CAUSAL_ORDER_ONLY",
+    "STANDARD_THEORY_SUFFICIENT",
+    "RELATIONAL_TIME_CANDIDATE"
+  ],
+  "version": "1.0",
+  "worlds": {
+    "T4": [
+      "stationary_OU_reversible",
+      "stationary_OU_rotational_current"
+    ],
+    "T5": [
+      "linear_DAG",
+      "nonlinear_DAG",
+      "branching_DAG",
+      "mediated_chain",
+      "common_driver",
+      "disconnected_components",
+      "feedback_pair",
+      "directed_cycle"
+    ],
+    "T6": [
+      "stable_linear_flow",
+      "non_normal_linear_flow",
+      "damped_rotation",
+      "multi_rate_system",
+      "periodic_rotation",
+      "nearly_degenerate_generator",
+      "multi_clock_product_system"
+    ],
+    "T7": [
+      "forward_reverse_twin",
+      "reversible_negative_control"
+    ]
+  }
+}
