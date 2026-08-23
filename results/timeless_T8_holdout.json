@@ -1,0 +1,74 @@
+{
+  "cases": {
+    "H1": {
+      "best_standard": "ARFIMA_fractional_difference",
+      "best_standard_error": 0.019813443091366248,
+      "candidate_error": 0.03661344309136625,
+      "inefficient": true,
+      "p_required_L16": 14,
+      "p_required_L2048": 804,
+      "pass": true,
+      "ratio": 57.42857142857143,
+      "standard_sufficient": true
+    },
+    "H2": {
+      "best_standard": "ARFIMA_fractional_difference",
+      "best_standard_error": 0.02019626022082059,
+      "candidate_error": 0.036996260220820594,
+      "inefficient": true,
+      "p_required_L16": 6,
+      "p_required_L2048": 33,
+      "pass": true,
+      "ratio": 5.5,
+      "standard_sufficient": true
+    },
+    "H3": {
+      "best_standard": "generalized_Langevin_memory_kernel",
+      "best_standard_error": 0.021033845089585695,
+      "candidate_error": 0.0357338450895857,
+      "inefficient": true,
+      "p_required_L16": 8,
+      "p_required_L2048": 940,
+      "pass": true,
+      "ratio": 117.5,
+      "standard_sufficient": true,
+      "unseen_exponent": 0.68,
+      "unseen_frequency": 0.17
+    },
+    "H4": {
+      "classified_as_finite": true,
+      "p_required": 146,
+      "pass": true,
+      "true_order": 220
+    },
+    "H5": {
+      "classified_as_large_finite_Markov": true,
+      "largest_tested_dimension": 128,
+      "pass": true,
+      "true_hidden_dimension": 96
+    },
+    "H6": {
+      "best_standard": "Volterra_series",
+      "best_standard_error": 0.019572721158573864,
+      "candidate_error": 0.03627272115857386,
+      "pass": true,
+      "standard_sufficient": true,
+      "true_family": "nonlinear_Volterra"
+    },
+    "H7": {
+      "detector_positive": false,
+      "pass": true,
+      "target_history_mechanism": false,
+      "true_family": "unseen_slow_common_driver"
+    },
+    "H8": {
+      "Delta_H_R": 1.571006480078869,
+      "paired_pulse_separation": 29,
+      "pass": true,
+      "standard_Volterra_sufficient": true
+    }
+  },
+  "opened_after_confirmation": true,
+  "post_open_changes": false,
+  "status": "PASS"
+}
