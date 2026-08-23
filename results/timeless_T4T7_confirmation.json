@@ -1,0 +1,186 @@
+{
+  "git": {
+    "branch": "agent/timeless-correlator-order-duration-arrow-t4-t7",
+    "commit": "bd9856df868a3c83ee2bce8665006a19d032cb8e"
+  },
+  "independent_raw_csv_recomputation": true,
+  "metrics": {
+    "T4": {
+      "current_difference": {
+        "5th_percentile": 0.7071067811865476,
+        "CI95": [
+          1.3729656668038797,
+          1.4542829466403326
+        ],
+        "failure_count": 0,
+        "mean": 1.4142135623730951,
+        "median": 1.414213562373095,
+        "n": 1200,
+        "standard_deviation": 0.7074015932824027
+      },
+      "empirical_moment_difference": {
+        "5th_percentile": 0.6479695310373802,
+        "CI95": [
+          1.7459242364668324,
+          1.844960212925701
+        ],
+        "failure_count": 0,
+        "mean": 1.7945270543511076,
+        "median": 1.652929241805083,
+        "n": 1200,
+        "standard_deviation": 0.8920164471245988
+      },
+      "generator_difference": {
+        "5th_percentile": 0.7071067811865476,
+        "CI95": [
+          1.3729656668038797,
+          1.4542829466403326
+        ],
+        "failure_count": 0,
+        "mean": 1.4142135623730951,
+        "median": 1.414213562373095,
+        "n": 1200,
+        "standard_deviation": 0.7074015932824027
+      },
+      "population_equal_time_match": true,
+      "verdict": "FULL_EQUAL_TIME_NO_GO"
+    },
+    "T5": {
+      "cycle_detection_accuracy": 1.0,
+      "false_total_order_rate": 0.0,
+      "reachability_F1": {
+        "5th_percentile": 1.0,
+        "CI95": [
+          1.0,
+          1.0
+        ],
+        "failure_count": 0,
+        "mean": 1.0,
+        "median": 1.0,
+        "n": 1800,
+        "standard_deviation": 0.0
+      },
+      "standard_causal_reachability_equal": true,
+      "verdict": "CAUSAL_ORDER_ONLY"
+    },
+    "T6": {
+      "generator_ambiguity": true,
+      "identifiable_subset_pass": true,
+      "matrix_log_same_budget_sufficient": true,
+      "multiclock_embedding_residual": {
+        "5th_percentile": 0.251827046671369,
+        "CI95": [
+          0.25182704667136907,
+          0.25182704667136907
+        ],
+        "failure_count": 0,
+        "mean": 0.25182704667136907,
+        "median": 0.2518270466713691,
+        "n": 300,
+        "standard_deviation": 5.560390175747647e-17
+      },
+      "periodic_aliasing": true,
+      "rank_order_accuracy": {
+        "5th_percentile": 1.0,
+        "CI95": [
+          1.0,
+          1.0
+        ],
+        "failure_count": 0,
+        "mean": 1.0,
+        "median": 1.0,
+        "n": 1500,
+        "standard_deviation": 0.0
+      },
+      "scalar_time_model_rejected": true,
+      "scale_aligned_duration_error": {
+        "5th_percentile": 1.493114032736627e-16,
+        "CI95": [
+          1.2226365241554512e-15,
+          1.3201572835855064e-15
+        ],
+        "failure_count": 0,
+        "mean": 1.271378020768922e-15,
+        "median": 1.2009344380711928e-15,
+        "n": 1500,
+        "standard_deviation": 9.43299840829399e-16
+      },
+      "verdict": "DURATION_ALIASING"
+    },
+    "T7": {
+      "asymmetric_AUC": {
+        "5th_percentile": 1.0,
+        "CI95": [
+          1.0,
+          1.0
+        ],
+        "failure_count": 0,
+        "mean": 1.0,
+        "median": 1.0,
+        "n": 300,
+        "standard_deviation": 0.0
+      },
+      "asymmetric_accuracy": {
+        "5th_percentile": 1.0,
+        "CI95": [
+          1.0,
+          1.0
+        ],
+        "failure_count": 0,
+        "mean": 1.0,
+        "median": 1.0,
+        "n": 300,
+        "standard_deviation": 0.0
+      },
+      "entropy_production_AUC": {
+        "5th_percentile": 0.5,
+        "CI95": [
+          0.5,
+          0.5
+        ],
+        "failure_count": 0,
+        "mean": 0.5,
+        "median": 0.5,
+        "n": 300,
+        "standard_deviation": 0.0
+      },
+      "standard_probability_current_equal": true,
+      "symmetric_AUC": {
+        "5th_percentile": 0.5,
+        "CI95": [
+          0.5,
+          0.5
+        ],
+        "failure_count": 0,
+        "mean": 0.5,
+        "median": 0.5,
+        "n": 300,
+        "standard_deviation": 0.0
+      },
+      "symmetric_accuracy": {
+        "5th_percentile": 0.5,
+        "CI95": [
+          0.5,
+          0.5
+        ],
+        "failure_count": 0,
+        "mean": 0.5,
+        "median": 0.5,
+        "n": 300,
+        "standard_deviation": 0.0
+      },
+      "verdict": "ARROW_REQUIRES_ASYMMETRY"
+    },
+    "labels": {
+      "T4": "FULL_EQUAL_TIME_NO_GO",
+      "T5": "CAUSAL_ORDER_ONLY",
+      "T6": "DURATION_ALIASING",
+      "T7": "ARROW_REQUIRES_ASYMMETRY"
+    },
+    "relational_time_candidate": false,
+    "stage": "confirmation",
+    "standard_theory_sufficient": true
+  },
+  "status": "COMPLETE",
+  "validation_config_SHA256": "1abf591ad8b5a61c5645bf397ee240717a7302b03bfdbf33051c6e0451f1c7e6"
+}

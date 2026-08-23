@@ -109,7 +109,10 @@ def make_figures() -> None:
 
     multiclock = t6[t6.world == "multi_clock_product_system"].multiclock_1D_embedding_residual
     plt.figure(figsize=(7, 4))
-    plt.hist(multiclock, bins=20, color="#d38a32", edgecolor="white")
+    if float(multiclock.max() - multiclock.min()) <= 1e-12:
+        plt.bar([float(multiclock.mean())], [len(multiclock)], width=0.01, color="#d38a32")
+    else:
+        plt.hist(multiclock, bins=20, color="#d38a32", edgecolor="white")
     plt.axvline(0.20, color="crimson", linestyle="--", label="scalar-time rejection gate")
     plt.xlabel("One-dimensional embedding residual")
     plt.title("T6 multi-clock falsifier")
@@ -324,4 +327,3 @@ if __name__ == "__main__":
     if missing:
         raise RuntimeError(f"missing required figures: {missing}")
     print("Wrote", path)
-

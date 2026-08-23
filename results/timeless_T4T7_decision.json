@@ -1,0 +1,16 @@
+{
+  "RELATIONAL_TIME_CANDIDATE": false,
+  "T4_verdict": "FULL_EQUAL_TIME_NO_GO",
+  "T5_verdict": "CAUSAL_ORDER_ONLY",
+  "T6_secondary": [
+    "GENERATOR_AMBIGUITY",
+    "SCALAR_TIME_MODEL_REJECTED"
+  ],
+  "T6_verdict": "DURATION_ALIASING",
+  "T7_verdict": "ARROW_REQUIRES_ASYMMETRY",
+  "claim_firewall": "No physical-time, causality-emergence, or Correlon-specific novelty claim is supported.",
+  "overall_scientific_verdict": "STANDARD_THEORY_SUFFICIENT",
+  "program": "Timeless Correlator T4-T7",
+  "strongest_standard_baseline": "causal reachability / matrix logarithm / probability current (same-budget ties)",
+  "validation_config_SHA256": "1abf591ad8b5a61c5645bf397ee240717a7302b03bfdbf33051c6e0451f1c7e6"
+}

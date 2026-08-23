@@ -1,0 +1,45 @@
+{
+  "cases": {
+    "H1": {
+      "equal_time_population_difference": 0.0,
+      "generator_difference_norm": 3.3516861428242355,
+      "pass": true
+    },
+    "H2": {
+      "pass": true,
+      "reachability_F1": 1.0,
+      "standard_method": "causal_reachability"
+    },
+    "H3": {
+      "operator_alias_difference": 7.287971501143209e-14,
+      "pass": true
+    },
+    "H4": {
+      "one_dimensional_embedding_residual": 0.2518270466713691,
+      "pass": true,
+      "scalar_time_rejected": true
+    },
+    "H5": {
+      "cycle_detected": true,
+      "pass": true,
+      "total_order_returned": false
+    },
+    "H6": {
+      "current_scores": [
+        0.05609360380678973,
+        -0.05609360380678973
+      ],
+      "pass": true,
+      "symmetric_feature_difference": 1.318316798730503e-15
+    },
+    "H7": {
+      "finite_markov_rejected": true,
+      "finite_markov_relative_error": 0.9304125108008939,
+      "pass": true,
+      "standard_fractional_model_sufficient": true
+    }
+  },
+  "opened_after_confirmation": true,
+  "status": "PASS",
+  "thresholds_or_models_changed_after_open": false
+}
