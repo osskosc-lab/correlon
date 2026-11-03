@@ -1,0 +1,143 @@
+{
+  "claim_firewall": {
+    "correlon_equals_cca_for_this_operator_forbids_novelty_claim": true,
+    "correlon_positive_is_not_direct_causation": true,
+    "supplied_J_is_not_emergent": true
+  },
+  "program": "Timeless Correlon",
+  "t0": {
+    "burn_in": 1000,
+    "dt": 0.01,
+    "gamma": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "omega": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "seeds": [
+      0,
+      99
+    ],
+    "trajectory_length": 5000
+  },
+  "t1": {
+    "betas": [
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "condition_numbers": [
+      1.5,
+      3.0,
+      10.0,
+      30.0
+    ],
+    "dimensions": [
+      2,
+      4,
+      8,
+      16
+    ],
+    "eigenvalue_floor": 1e-08,
+    "sample_sizes": [
+      500,
+      2000,
+      10000
+    ],
+    "seeds": [
+      0,
+      99
+    ]
+  },
+  "t2": {
+    "betas": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "dimensions": [
+      2,
+      4,
+      8
+    ],
+    "flow_scale_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "seeds": [
+      0,
+      99
+    ]
+  },
+  "t3": {
+    "confirmation_seeds": [
+      10000,
+      10199
+    ],
+    "coupling_strengths": [
+      0.1,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "development_seeds": [
+      0,
+      49
+    ],
+    "dimensions": [
+      4,
+      8,
+      16
+    ],
+    "eigenvalue_floor": 1e-08,
+    "heldout_samples": 1000,
+    "methods": [
+      "correlon",
+      "cca_equivalent",
+      "block_diagonal",
+      "pca_rank_matched",
+      "random_rank_matched",
+      "raw_svd",
+      "full_state_oracle"
+    ],
+    "rank_candidates": [
+      1,
+      2,
+      4
+    ],
+    "screening_heldout_samples": 64,
+    "selection": {
+      "best_baseline_method": "raw_svd",
+      "best_baseline_rank": 4,
+      "cca_identity_max_diff": 0.0,
+      "correlon_rank": 4,
+      "identity_tolerance": 1e-10,
+      "selection_rule": "minimum mean primary generator error on validation; full oracle and CCA identity row excluded from baseline selection",
+      "validation_best_baseline_error": 0.08762720307299246,
+      "validation_correlon_error": 0.08834954215778953
+    },
+    "train_samples": 2000,
+    "true_ranks": [
+      1,
+      2,
+      4
+    ],
+    "validation_seeds": [
+      1000,
+      1049
+    ]
+  },
+  "version": "1.0"
+}

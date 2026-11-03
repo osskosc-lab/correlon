@@ -1,0 +1,61 @@
+{
+  "allowed_claim": "C can encode a flow generator only in the restricted Gibbs-Gaussian regime when the canonical algebraic structure is supplied independently.",
+  "configuration": {
+    "betas": [
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "condition_numbers": [
+      1.5,
+      3.0,
+      10.0,
+      30.0
+    ],
+    "dimensions": [
+      2,
+      4,
+      8,
+      16
+    ],
+    "eigenvalue_floor": 1e-08,
+    "sample_sizes": [
+      500,
+      2000,
+      10000
+    ],
+    "seeds": [
+      0,
+      99
+    ]
+  },
+  "git": {
+    "branch": "agent/timeless-correlon-phase-t0-t3",
+    "commit": "c470b02770571e9cb0e98836545b4edb0a011ba2"
+  },
+  "phase": "T1",
+  "positive_control_gate": {
+    "generator_error_threshold": 0.1,
+    "median_generator_error_N_ge_2000_cond_le_10": 0.03113506362187565,
+    "median_generator_error_by_sample_size_cond_le_10": {
+      "10000": 0.02240837567930062,
+      "2000": 0.05081729053155873,
+      "500": 0.10214051334471924
+    },
+    "median_vector_field_cosine_N_ge_2000_cond_le_10": 0.9994959537304541,
+    "monotonicity": true,
+    "pass": true,
+    "vector_field_cosine_threshold": 0.95
+  },
+  "unknown_symplectic_structure_ablation": {
+    "generator_error_CI95": [
+      0.8361137600615582,
+      0.8738791356216522
+    ],
+    "interpretation": "C requires additional algebraic/symplectic structure",
+    "pass": true,
+    "threshold_lower_bound": 0.2
+  },
+  "verdict": "RESTRICTED_GIBBS_GAUSSIAN_RECOVERY"
+}
