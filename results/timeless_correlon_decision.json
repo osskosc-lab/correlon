@@ -1,7 +1,7 @@
 {
   "git": {
     "branch": "agent/timeless-correlon-phase-t0-t3",
-    "commit": "c470b02770571e9cb0e98836545b4edb0a011ba2"
+    "commit": "a727f11e95e40d7b0919dc87dd9730bfc16abc69"
   },
   "level_0": {
     "decision": "UNIVERSAL_C_TO_TIME_FALSIFIED",
@@ -29,13 +29,13 @@
     "additional_structure": "C_REQUIRES_ADDITIONAL_ALGEBRAIC_STRUCTURE",
     "decision": "RESTRICTED_C_TO_FLOW_SUPPORTED",
     "details": {
-      "median_generator_error_N_ge_2000_cond_le_10": 0.0311350636218756,
+      "median_generator_error_N_ge_2000_cond_le_10": 0.0311350636218758,
       "median_generator_error_by_sample_size_cond_le_10": {
-        "10000": 0.0224083756793006,
+        "10000": 0.0224083756793001,
         "2000": 0.0508172905315587,
-        "500": 0.1021405133447192
+        "500": 0.1021405133447194
       },
-      "median_vector_field_cosine_N_ge_2000_cond_le_10": 0.999495953730454,
+      "median_vector_field_cosine_N_ge_2000_cond_le_10": 0.9994959537304542,
       "monotonicity": true,
       "positive_control_pass": true,
       "thresholds": {
@@ -75,10 +75,10 @@
       "correlon_error_mean": 0.0882974802561347,
       "n_paired_confirmation_cases": 7200,
       "relative_gain_CI95": [
-        -0.007101573022447341,
-        -0.0066111304080025335
+        -0.007101573022447344,
+        -0.006611130408002383
       ],
-      "relative_gain_mean": -0.006859036810929524,
+      "relative_gain_mean": -0.006859036810929541,
       "selected_baseline": "raw_svd",
       "selected_baseline_rank": 4,
       "selected_correlon_rank": 4,
